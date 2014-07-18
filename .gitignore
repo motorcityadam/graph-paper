@@ -11,3 +11,14 @@ packages/
 
 # Include when developing application packages.
 pubspec.lock
+
+########################
+# IDE/OS specific
+########################
+*~
+*#
+.DS_STORE
+.netbeans
+nbproject
+.idea
+*.iml
