@@ -8,24 +8,34 @@ The complete set of contributors may be found at http://adamjcook.github.io/work
 <head>
   <title>Demonstration of graph-paper</title>
 
-  <script src="packages/web_components/platform.js"></script>
-  <script src="packages/web_components/dart_support.js"></script>
+  <script src="../packages/web_components/platform.js"></script>
+  <script src="../packages/web_components/dart_support.js"></script>
+
+  <link rel="stylesheet" href="/assets/roboto-fontface/roboto-fontface.css">
+  <link rel="import" href="packages/paper_elements/paper_dialog.html">
 
   <link rel="import" href="packages/graph_paper/graph_paper.html">
 
   <style shim-shadowdom>
 
+    html, body {
+      -webkit-font-smoothing: antialiased;
+    }
+
     body {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 400;
       font-size: 13px;
       padding: 0px;
       margin: 0px;
       background: #eee;
+      -webkit-font-smoothing: antialiased;
     }
 
     #frameContainer {
     }
 
+    /* Positions the graph-paper element in space and sets box shadow around paper for depth. */
     graph-paper {
       box-shadow: 0 0 0 1px #d1d1d1,0 0 4px 1px #ccc;
       outline: 0;
@@ -33,6 +43,10 @@ The complete set of contributors may be found at http://adamjcook.github.io/work
       margin-left: 50px;
       margin-top: 50px;
       margin-bottom: 50px;
+    }
+
+    #uiControls {
+
     }
 
   </style>
@@ -47,6 +61,12 @@ The complete set of contributors may be found at http://adamjcook.github.io/work
     <graph-paper></graph-paper>
   </div>
   <!-- ===================== INTERNAL ===================== -->
+
+  <!-- ===================== UI CONTROLS ===================== -->
+  <div id="uiControls">
+    <paper-dialog></paper-dialog>
+  </div>
+  <!-- ===================== UI CONTROLS ===================== -->
 </div>
 
 <script type="application/dart">export 'package:polymer/init.dart';</script>

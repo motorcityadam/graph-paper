@@ -9,10 +9,11 @@ dependencies:
   web_components: '>=0.4.0 <0.5.0'
 dev_dependencies:
   html5lib: '>=0.11.0 <0.12.0'
+  paper_elements: ">=0.0.1 <0.1.0"
   path: '>=1.0.0 <2.0.0'
   yaml: '>=1.0.0 <2.0.0'
 transformers:
 - polymer:
     entry_points:
-    - example/index.html
+    - web/index.html
     lint: false

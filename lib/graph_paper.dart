@@ -13,24 +13,26 @@ import 'package:graph_paper/src/common.dart' show DomProxyMixin;
 ///
 /// Options:
 ///
-/// 1. Units (units): inch* or mm
+/// 1.  Units (units): inch* or mm
 /// 2a. Paper size in X (paper-size-x) 8.5*
 /// 2b. Paper size in Y (paper-size-y) 11*
-/// 3. TODO(adamjcook): PPI (pixels per inch)???
-/// 4. Spacing (spacing):
-///      if Units are inch: 0.1" to 2"
-///      if Units are mm:   1mm to 40mm
-/// 5. Margin (margin):
-///      if Units are inch: 0.2" to 2"
-///      if Units are mm:   5mm to 20mm
-/// 6. Stroke width (stroke-width): 1*
-///      thin:   1px
-///      medium: 2px
-///      thick:  3px
-/// 7. Stroke color (stroke-color): (hex color code, i.e. #e1e1e1) #e1e1e1*
-/// 8a. Major line spacing in X (major-line-x-spacing): 0*
-/// 8b. Major line spacing in Y (major-line-y-spacing): 0*
-/// 9. TODO(adamjcook): Enable snap points??? On click handler to find the nearest grid intersection and output it through graph-paper element API
+/// 3.  Paper color (paper-color): (hex color code, i.e. #fff) #fff*
+/// 4.  TODO(adamjcook): PPI (pixels per inch)???
+/// 5.  Spacing (spacing):
+///       if Units are inch: 0.1" to 2"
+///       if Units are mm:   1mm to 40mm
+/// 6.  Margin (margin):
+///       if Units are inch: 0.2" to 2"
+///       if Units are mm:   5mm to 20mm
+/// 7.  Stroke width (stroke-width): 1*
+///       thin:   1px
+///       medium: 2px
+///       thick:  3px
+/// 8.  Stroke color (stroke-color): (hex color code, i.e. #e1e1e1) #e1e1e1*
+/// 9a. Major line spacing in X (major-line-x-spacing): 0*
+/// 9b. Major line spacing in Y (major-line-y-spacing): 0*
+/// 10. TODO(adamjcook): Enable scalar zoom multipler???
+/// 11. TODO(adamjcook): Enable snap points??? On click handler to find the nearest grid intersection and output it through graph-paper element API
 class GraphPaper extends HtmlElement with DomProxyMixin {
   GraphPaper.created() : super.created();
 }

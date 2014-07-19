@@ -1,4 +1,5 @@
-:host {
+:host :hover {
+    cursor: crosshair;
 }
 
 :host #paper {
