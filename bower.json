@@ -26,6 +26,5 @@
         "tests"
     ],
     "dependencies": {
-        "highlightjs": "latest"
     }
 }
