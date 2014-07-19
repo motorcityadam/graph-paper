@@ -26,7 +26,6 @@
         "tests"
     ],
     "dependencies": {
-        "highlightjs": "latest",
-        "polymer": "polymer/polymer#master"
+        "highlightjs": "latest"
     }
 }
