@@ -12,8 +12,13 @@ The complete set of contributors may be found at http://adamjcook.github.io/grap
   <script src="packages/web_components/dart_support.js"></script>
 
   <link rel="stylesheet" href="/assets/roboto-fontface/roboto-fontface.css">
-  <!--<link rel="import" href="packages/paper_elements/paper_dialog.html">-->
+  <!-- NOTE: If any new Polymer imports are added here, also add the matching Dart imports in bootstrap.dart. -->
+  <link rel="import" href="packages/core_elements/core_icon_button.html">
+  <link rel="import" href="packages/core_elements/core_toolbar.html">
+  <link rel="import" href="packages/paper_elements/paper_checkbox.html">
+  <link rel="import" href="packages/paper_elements/paper_radio_group.html">
   <link rel="import" href="packages/paper_elements/paper_shadow.html">
+  <link rel="import" href="packages/paper_elements/paper_slider.html">
 
   <link rel="import" href="packages/graph_paper/graph_paper.html">
 
@@ -33,6 +38,10 @@ The complete set of contributors may be found at http://adamjcook.github.io/grap
       -webkit-font-smoothing: antialiased;
     }
 
+    section > div {
+      padding: 8px 0;
+    }
+
     #frameContainer {
     }
 
@@ -41,7 +50,6 @@ The complete set of contributors may be found at http://adamjcook.github.io/grap
 
     /* Positions the graph-paper element in space and sets box shadow around paper for depth. */
     graph-paper {
-      /*box-shadow: 0 0 0 1px #d1d1d1,0 0 4px 1px #ccc;*/
       outline: 0;
       float: left;
       margin-left: 50px;
@@ -50,7 +58,51 @@ The complete set of contributors may be found at http://adamjcook.github.io/grap
     }
 
     #uiControls {
+      -webkit-transition: -webkit-transform 0.3s ease-in-out;
+      transition: transform 0.3s ease-in-out;
+      position: fixed;
+      overflow: hidden;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 350px;
+      border-left: 1px solid silver;
+      -webkit-user-select: none;
+    }
 
+    .uiControlsContainer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    .uiTools {
+      background-color: #5264ae;
+    }
+
+    #controls {
+      font-size: 14px;
+      padding: 16px;
+      background-color: #eee;
+    }
+
+    paper-slider {
+      width: 100%;
+    }
+
+    /* Width is set to 50px (default is 40px) to fit in a four-decimal place fractional value */
+    paper-slider /deep/ .slider-input {
+      width: 50px;
+    }
+
+    paper-checkbox::shadow #ink[checked] {
+      color: #4285f4;
+    }
+
+    paper-checkbox::shadow #checkbox.checked {
+      border-color: #4285f4;
     }
 
   </style>
@@ -69,8 +121,75 @@ The complete set of contributors may be found at http://adamjcook.github.io/grap
   <!-- ===================== INTERNAL ===================== -->
 
   <!-- ===================== UI CONTROLS ===================== -->
-  <div id="uiControls">
-    <paper-dialog></paper-dialog>
+  <div id="uiControls" class="{{ {maximized: maximized} | tokenList}}">
+    <div class="uiControlsContainer" flex vertical layout>
+      <core-toolbar class="uiTools narrow">
+        <div id="selectedElement" flex>
+          <core-icon-button class="toggleButton" title="Toggle Visibility" icon="arrow-back" on-click="{{toggleVisibility}}"></core-icon-button>
+        </div>
+      </core-toolbar>
+      <div id="controls" flex>
+        <section>
+          <div center layout>
+            <div>Units</div>
+            <paper-radio-group selected="inch">
+              <paper-radio-button name="inch" label="Inches"></paper-radio-button>
+              <paper-radio-button name="mm" label="Millimeters"></paper-radio-button>
+            </paper-radio-group>
+          </div>
+        </section>
+        <section>
+          <div center layout>
+            <!-- TODO(adamjcook): add visibility controls for inch or mm units -->
+            <div>Paper Size</div>
+            <paper-radio-group class="inchGroup" selected="letter">
+              <paper-radio-button name="letter" label="Letter (8.5&quot; x 11&quot;)"></paper-radio-button>
+              <paper-radio-button name="legal" label="Legal (8.5&quot; x 14&quot;)"></paper-radio-button>
+              <paper-radio-button name="tabloid" label="Tabloid (11&quot; x 17&quot;)"></paper-radio-button>
+            </paper-radio-group>
+            <!--<paper-radio-group class="mmGroup" selected="a4">-->
+              <!--<paper-radio-button name="a4" label="A4 (210mm x 297mm)"></paper-radio-button>-->
+              <!--<paper-radio-button name="a3" label="A3 (297mm x 420mm)"></paper-radio-button>-->
+            <!--</paper-radio-group>-->
+          </div>
+        </section>
+        <section>
+          <div center layout>
+            <div>Layout</div>
+            <paper-radio-group selected="portrait">
+              <paper-radio-button name="portrait" label="Portrait"></paper-radio-button>
+              <paper-radio-button name="landscape" label="Landscape"></paper-radio-button>
+            </paper-radio-group>
+          </div>
+        </section>
+        <section>
+          <div center layout>
+            <div>Spacing</div>
+            <paper-slider value="0.0625" max="3.1250" step="0.0625" editable snaps></paper-slider>
+          </div>
+          <div center layout>
+            <div>Margin</div>
+            <paper-slider value="0.0625" max="3.1250" step="0.0625" editable snaps></paper-slider>
+          </div>
+        </section>
+        <section>
+          <div center layout>
+            <div>Stroke Width</div>
+            <paper-radio-group selected="thin">
+              <paper-radio-button name="thin" label="Thin"></paper-radio-button>
+              <paper-radio-button name="medium" label="Medium"></paper-radio-button>
+              <paper-radio-button name="thick" label="Thick"></paper-radio-button>
+            </paper-radio-group>
+          </div>
+        </section>
+        <section style="width: 120px;">
+          <div center horizontal layout>
+            <div flex>Snap to Grid</div>
+            <paper-checkbox></paper-checkbox>
+          </div>
+        </section>
+      </div>
+    </div>
   </div>
   <!-- ===================== UI CONTROLS ===================== -->
 </div>
