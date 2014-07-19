@@ -3,8 +3,8 @@
 }
 
 :host #uiControls {
-    -webkit-transition: -webkit-transform 0.3s ease-in-out;
-    transition: transform 0.3s ease-in-out;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
     position: fixed;
     overflow: hidden;
     top: 0;
@@ -13,6 +13,10 @@
     width: 350px;
     border-left: 1px solid silver;
     -webkit-user-select: none;
+}
+
+:host #uiControls.collapsed {
+    width: 58px;
 }
 
 :host .uiControlsContainer {
@@ -31,6 +35,13 @@
     font-size: 14px;
     padding: 16px;
     background-color: #eee;
+    opacity: 1;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+:host #controls.collapsed {
+    opacity: 0;
 }
 
 :host paper-slider {

@@ -40,14 +40,14 @@ Options:
 <polymer-element name="ui-drawer">
   <template>
     <link rel="stylesheet" href="ui_drawer.css">
-    <div id="uiControls">
+    <div id="uiControls" class="{{ {collapsed: drawerState['collapsed']} }}">
       <div class="uiControlsContainer" flex vertical layout>
         <core-toolbar class="uiTools narrow">
           <div id="selectedElement" flex>
-            <core-icon-button class="toggleButton" title="Toggle Visibility" icon="arrow-back" on-tap="{{toggleVisibility}}"></core-icon-button>
+            <core-icon-button class="toggleButton" title="Toggle Visibility" icon="drawer" on-tap="{{toggleVisibility}}"></core-icon-button>
           </div>
         </core-toolbar>
-        <div id="controls" flex>
+        <div id="controls" class="{{ {collapsed: drawerState['collapsed']} }}" flex>
           <section>
             <div center layout>
               <div>Units</div>
