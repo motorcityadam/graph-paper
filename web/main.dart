@@ -8,7 +8,6 @@ import 'dart:async';
 import 'dart:html';
 
 import 'package:polymer/polymer.dart' as polymer;
-//import 'package:alliedview_widgets/alliedview_button/alliedview_button.dart';
 
 import 'bootstrap.dart';
 

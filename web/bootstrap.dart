@@ -5,6 +5,7 @@
 library example.bootstrap;
 
 import 'package:polymer/polymer.dart';
+import 'package:paper_elements/paper_shadow.dart';
 
 import 'package:graph_paper/graph_paper.dart';
 
@@ -15,5 +16,6 @@ void registerElementsWithPolymer() {
   print('bootstrap :: registerElementsWithPolymer()');
 
   // Register Polymer components.
+  upgradePaperShadow();
   upgradeGraphPaper();
 }
