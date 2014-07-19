@@ -2,7 +2,7 @@
 // This code may only be used under The MIT License found at http://adamjcook.github.io/graph-paper/LICENSE
 // The complete set of contributors may be found at http://adamjcook.github.io/graph-paper/CONTRIBUTORS
 
-library example.bootstrap;
+library bootstrap;
 
 import 'package:core_elements/core_icon_button.dart';
 import 'package:core_elements/core_toolbar.dart';
@@ -14,13 +14,15 @@ import 'package:paper_elements/paper_slider.dart';
 
 import 'package:graph_paper/graph_paper.dart';
 
+import 'ui_drawer.dart';
+
 void registerElementsWithPolymer() {
   // Initialize Polymer.
   startPolymer([], false);
 
   print('bootstrap :: registerElementsWithPolymer()');
 
-  // Register Polymer components.
+  // Register Polymer components
   upgradeCoreIconButton();
   upgradeCoreToolbar();
   upgradePaperCheckbox();
@@ -28,4 +30,5 @@ void registerElementsWithPolymer() {
   upgradePaperShadow();
   upgradePaperSlider();
   upgradeGraphPaper();
+  upgradeUiDrawer();
 }

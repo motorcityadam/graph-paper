@@ -1,0 +1,51 @@
+:host section > div {
+    padding: 8px 0;
+}
+
+:host #uiControls {
+    -webkit-transition: -webkit-transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 350px;
+    border-left: 1px solid silver;
+    -webkit-user-select: none;
+}
+
+:host .uiControlsContainer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+:host .uiTools {
+    background-color: #5264ae;
+}
+
+:host #controls {
+    font-size: 14px;
+    padding: 16px;
+    background-color: #eee;
+}
+
+:host paper-slider {
+    width: 100%;
+}
+
+/* Width is set to 50px (default is 40px) to fit in a four-decimal place fractional value */
+:host paper-slider /deep/ .slider-input {
+                        width: 50px;
+                    }
+
+:host paper-checkbox::shadow #ink[checked] {
+    color: #4285f4;
+}
+
+:host paper-checkbox::shadow #checkbox.checked {
+    border-color: #4285f4;
+}

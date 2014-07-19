@@ -2,7 +2,7 @@
 // This code may only be used under The MIT License found at http://adamjcook.github.io/graph-paper/LICENSE
 // The complete set of contributors may be found at http://adamjcook.github.io/graph-paper/CONTRIBUTORS
 
-library example.main;
+library main;
 
 import 'dart:async';
 import 'dart:html';
@@ -13,6 +13,6 @@ import 'bootstrap.dart';
 
 @polymer.initMethod
 void main() {
-  print('example :: main()');
+  print('main :: main()');
   registerElementsWithPolymer();
 }

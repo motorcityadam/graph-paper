@@ -1,0 +1,115 @@
+<!--
+Copyright (c) 2014 Adam Joseph Cook. All rights reserved.
+This code may only be used under The MIT License found at http://adamjcook.github.io/graph-paper/LICENSE
+The complete set of contributors may be found at http://adamjcook.github.io/graph-paper/CONTRIBUTORS
+-->
+<!--
+
+TODO(adamjcook): add summary of element and element options/attributes here
+
+Options:
+
+1.  Units (units): inch* or mm
+2a. Paper size in X (paper-size-x) 8.5*
+2b. Paper size in Y (paper-size-y) 11*
+3.  Paper color (paper-color): (hex color code, i.e. #fff) #fff*
+4.  TODO(adamjcook): PPI (pixels per inch)???
+5.  Spacing (spacing):
+      if Units are inch: 0.1" to 2"
+      if Units are mm:   1mm to 40mm
+6.  Margin (margin):
+      if Units are inch: 0.2" to 2"
+      if Units are mm:   5mm to 20mm
+7.  Stroke width (stroke-width): 1*
+      thin:   1px
+      medium: 2px
+      thick:  3px
+8.  Stroke color (stroke-color): (hex color code, i.e. #e1e1e1) #e1e1e1*
+9a. Major line spacing in X (major-line-x-spacing): 0*
+9b. Major line spacing in Y (major-line-y-spacing): 0*
+10. TODO(adamjcook): Enable scalar zoom multipler???
+11. TODO(adamjcook): Enable snap points??? On click handler to find the nearest grid intersection and output it through graph-paper element API
+
+@group Graph Paper Elements
+@element graph-paper
+@homepage adamjcook.github.io/graph-paper
+-->
+
+<link rel="import" href="packages/polymer/polymer.html">
+
+<polymer-element name="ui-drawer">
+  <template>
+    <link rel="stylesheet" href="ui_drawer.css">
+    <div id="uiControls">
+      <div class="uiControlsContainer" flex vertical layout>
+        <core-toolbar class="uiTools narrow">
+          <div id="selectedElement" flex>
+            <core-icon-button class="toggleButton" title="Toggle Visibility" icon="arrow-back" on-tap="{{toggleVisibility}}"></core-icon-button>
+          </div>
+        </core-toolbar>
+        <div id="controls" flex>
+          <section>
+            <div center layout>
+              <div>Units</div>
+              <paper-radio-group selected="inch">
+                <paper-radio-button name="inch" label="Inches"></paper-radio-button>
+                <paper-radio-button name="mm" label="Millimeters"></paper-radio-button>
+              </paper-radio-group>
+            </div>
+          </section>
+          <section>
+            <div center layout>
+              <!-- TODO(adamjcook): add visibility controls for inch or mm units -->
+              <div>Paper Size</div>
+              <paper-radio-group class="inchGroup" selected="letter">
+                <paper-radio-button name="letter" label="Letter (8.5&quot; x 11&quot;)"></paper-radio-button>
+                <paper-radio-button name="legal" label="Legal (8.5&quot; x 14&quot;)"></paper-radio-button>
+                <paper-radio-button name="tabloid" label="Tabloid (11&quot; x 17&quot;)"></paper-radio-button>
+              </paper-radio-group>
+              <!--<paper-radio-group class="mmGroup" selected="a4">-->
+              <!--<paper-radio-button name="a4" label="A4 (210mm x 297mm)"></paper-radio-button>-->
+              <!--<paper-radio-button name="a3" label="A3 (297mm x 420mm)"></paper-radio-button>-->
+              <!--</paper-radio-group>-->
+            </div>
+          </section>
+          <section>
+            <div center layout>
+              <div>Layout</div>
+              <paper-radio-group selected="portrait">
+                <paper-radio-button name="portrait" label="Portrait"></paper-radio-button>
+                <paper-radio-button name="landscape" label="Landscape"></paper-radio-button>
+              </paper-radio-group>
+            </div>
+          </section>
+          <section>
+            <div center layout>
+              <div>Spacing</div>
+              <paper-slider value="0.0625" max="3.1250" step="0.0625" editable snaps></paper-slider>
+            </div>
+            <div center layout>
+              <div>Margin</div>
+              <paper-slider value="0.0625" max="3.1250" step="0.0625" editable snaps></paper-slider>
+            </div>
+          </section>
+          <section>
+            <div center layout>
+              <div>Stroke Width</div>
+              <paper-radio-group selected="thin">
+                <paper-radio-button name="thin" label="Thin"></paper-radio-button>
+                <paper-radio-button name="medium" label="Medium"></paper-radio-button>
+                <paper-radio-button name="thick" label="Thick"></paper-radio-button>
+              </paper-radio-group>
+            </div>
+          </section>
+          <section style="width: 120px;">
+            <div center horizontal layout>
+              <div flex>Snap to Grid</div>
+              <paper-checkbox></paper-checkbox>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script type="application/dart" src="ui_drawer.dart"></script>
+</polymer-element>
