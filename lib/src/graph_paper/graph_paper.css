@@ -2,7 +2,14 @@
 }
 
 :host #paper {
-    /* width: 816px, height: 1056px - letter size, portrait at 100% zoom */
+    background: #fff; /* set via paper-color attribute */
+    width: 816px;     /* set via paper-size-x attribute */
+    height: 1056px;   /* set via paper-size-y attribute */
+    float: left;
+}
+
+:host #paper-content {
+    /* spec => width: 816px, height: 1056px - letter size, portrait at 100% zoom */
     width: 780px;     /* default - letter size, portrait, 0.3125" spacing (30px), 0.1875" margin (18px) */
     height: 1020px;
     margin-top: 18px;

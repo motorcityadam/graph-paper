@@ -1,0 +1,54 @@
+<!doctype html>
+<!--
+Copyright (c) 2014 Adam Joseph Cook. All rights reserved.
+This code may only be used under The MIT License found at http://adamjcook.github.io/workbook/LICENSE
+The complete set of contributors may be found at http://adamjcook.github.io/workbook/CONTRIBUTORS
+-->
+<html>
+<head>
+  <title>Demonstration of graph-paper</title>
+
+  <script src="packages/web_components/platform.js"></script>
+  <script src="packages/web_components/dart_support.js"></script>
+
+  <link rel="import" href="packages/graph_paper/graph_paper.html">
+
+  <style shim-shadowdom>
+
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      padding: 0px;
+      margin: 0px;
+      background: #eee;
+    }
+
+    #frameContainer {
+    }
+
+    graph-paper {
+      box-shadow: 0 0 0 1px #d1d1d1,0 0 4px 1px #ccc;
+      outline: 0;
+      float: left;
+      margin-left: 50px;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+  </style>
+
+</head>
+<body unresolved>
+
+<div id="mainContainer" vertical layout>
+
+  <!-- ===================== INTERNAL ===================== -->
+  <div id="frameContainer">
+    <graph-paper></graph-paper>
+  </div>
+  <!-- ===================== INTERNAL ===================== -->
+</div>
+
+<script type="application/dart">export 'package:polymer/init.dart';</script>
+</body>
+</html>

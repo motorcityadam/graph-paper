@@ -6,33 +6,36 @@ The complete set of contributors may be found at http://adamjcook.github.io/grap
 <!--
 
 TODO(adamjcook): add summary of element and element options/attributes here
-TODO(adamjcook): seperate the 'util-graph-paper' element into its own Pub package.
 
 Options:
 
-1. Units (units): inch* or mm
+1.  Units (units): inch* or mm
 2a. Paper size in X (paper-size-x) 8.5*
 2b. Paper size in Y (paper-size-y) 11*
-3. TODO(adamjcook): PPI (pixels per inch)???
-4. Spacing (spacing):
-     if Units are inch: 0.1" to 2"
-     if Units are mm:   1mm to 40mm
-5. Margin (margin):
-     if Units are inch: 0.2" to 2"
-     if Units are mm:   5mm to 20mm
-6. Stroke width (stroke-width): 1*
-     thin:   1px
-     medium: 2px
-     thick:  3px
-7. Stroke color (stroke-color): (hex color code, i.e. #e1e1e1) #e1e1e1*
-8a. Major line spacing in X (major-line-x-spacing): 0*
-8b. Major line spacing in Y (major-line-y-spacing): 0*
-9. TODO(adamjcook): Enable snap points??? On click handler to find the nearest grid intersection and output it through graph-paper element API
+3.  Paper color (paper-color): (hex color code, i.e. #fff) #fff*
+4.  TODO(adamjcook): PPI (pixels per inch)???
+5.  Spacing (spacing):
+      if Units are inch: 0.1" to 2"
+      if Units are mm:   1mm to 40mm
+6.  Margin (margin):
+      if Units are inch: 0.2" to 2"
+      if Units are mm:   5mm to 20mm
+7.  Stroke width (stroke-width): 1*
+      thin:   1px
+      medium: 2px
+      thick:  3px
+8.  Stroke color (stroke-color): (hex color code, i.e. #e1e1e1) #e1e1e1*
+9a. Major line spacing in X (major-line-x-spacing): 0*
+9b. Major line spacing in Y (major-line-y-spacing): 0*
+10. TODO(adamjcook): Enable scalar zoom multipler???
+11. TODO(adamjcook): Enable snap points??? On click handler to find the nearest grid intersection and output it through graph-paper element API
 
 @group Graph Paper Elements
 @element graph-paper
 @homepage adamjcook.github.io/graph-paper
 -->
+
+<link rel="import" href="../polymer/polymer.html">
 
 <polymer-element name="graph-paper">
   <template>
@@ -40,28 +43,30 @@ Options:
     <!-- TODO(adamjcook): on #paper, width and margin-top are adjusted when 'margin' attribute is adjusted -->
     <!-- TODO(adamjcook): on #paper, border (thickness and color) is adjusted when 'stroke-color' and 'stroke-width' attribute are adjusted -->
     <div id="paper">
-      <div id="grid-container" style="width:100%;height:100%;overflow:hidden;">
-        <svg id="svg-grid" zoomAndPan="disable" currentscale="2" xmlns="http://www.w3.org/2000/svg" version="1.2" width="3000" height="2000">
+      <div id="paper-content">
+        <div id="grid-container" style="width:100%;height:100%;overflow:hidden;">
+          <svg id="svg-grid" zoomAndPan="disable" currentscale="2" xmlns="http://www.w3.org/2000/svg" version="1.2" width="3000" height="2000">
 
-          <pattern id="grid-pattern" patternUnits="userSpaceOnUse" x="0" y="0" width="150" height="150">
-            <g id="sharp" transform="translate(-0.5,-0.5)">
-              <line class="lineH" x1="0" x2="150" y1="30" y2="30" stroke="#e1e1e1" stroke-width="1"></line>
-              <line class="lineH" x1="0" x2="150" y1="60" y2="60" stroke="#e1e1e1" stroke-width="1"></line>
-              <line class="lineH" x1="0" x2="150" y1="90" y2="90" stroke="#e1e1e1" stroke-width="1"></line>
-              <line class="lineH" x1="0" x2="150" y1="120" y2="120" stroke="#e1e1e1" stroke-width="1"></line>
+            <pattern id="grid-pattern" patternUnits="userSpaceOnUse" x="0" y="0" width="150" height="150">
+              <g id="sharp" transform="translate(-0.5,-0.5)">
+                <line class="lineH" x1="0" x2="150" y1="30" y2="30" stroke="#e1e1e1" stroke-width="1"></line>
+                <line class="lineH" x1="0" x2="150" y1="60" y2="60" stroke="#e1e1e1" stroke-width="1"></line>
+                <line class="lineH" x1="0" x2="150" y1="90" y2="90" stroke="#e1e1e1" stroke-width="1"></line>
+                <line class="lineH" x1="0" x2="150" y1="120" y2="120" stroke="#e1e1e1" stroke-width="1"></line>
 
-              <line class="lineV" x1="30" x2="30" y1="0" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
-              <line class="lineV" x1="60" x2="60" y1="0" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
-              <line class="lineV" x1="90" x2="90" y1="0" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
-              <line class="lineV" x1="120" x2="120" y1="0" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
+                <line class="lineV" x1="30" x2="30" y1="0" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
+                <line class="lineV" x1="60" x2="60" y1="0" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
+                <line class="lineV" x1="90" x2="90" y1="0" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
+                <line class="lineV" x1="120" x2="120" y1="0" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
 
-              <line class="lineV" x1="150" x2="150" y1="0" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
-              <line class="lineH" x1="0" x2="150" y1="150" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
-            </g>
-          </pattern>
+                <line class="lineV" x1="150" x2="150" y1="0" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
+                <line class="lineH" x1="0" x2="150" y1="150" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
+              </g>
+            </pattern>
 
-          <rect id="grid" fill="url(#grid-pattern)" width="3000" height="2000"></rect>
-        </svg>
+            <rect id="grid" fill="url(#grid-pattern)" width="3000" height="2000"></rect>
+          </svg>
+        </div>
       </div>
     </div>
   </template>

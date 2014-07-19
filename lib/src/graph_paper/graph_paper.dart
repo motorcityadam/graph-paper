@@ -13,8 +13,8 @@ import 'package:polymer/polymer.dart';
  * TODO(adamjcook): add comments for this element
  */
 @CustomTag('graph-paper')
-class UtilGraphPaper extends PolymerElement {
+class GraphPaper extends PolymerElement {
 
-  UtilGraphPaper.created() : super.created() {}
+  GraphPaper.created() : super.created() {}
 
 }
