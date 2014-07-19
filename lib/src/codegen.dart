@@ -14,12 +14,11 @@ import 'ast.dart';
 String generateClass(Element element, FileConfig config) {
   var sb = new StringBuffer();
   var comment = _toComment(element.description);
-  sb.write(_generateHeader(element.name, comment, element.extendName));
   var getDartName = _substituteFunction(config.nameSubstitutions);
   element.properties.values.forEach((p) => _generateProperty(p, sb, getDartName));
   element.methods.forEach((m) => _generateMethod(m, sb, getDartName));
-  sb.write('}\n');
-//  sb.write(_generateUpdateMethod(element.name)); // TODO(adamjcook): See comment below on function definition.
+  sb.write('\n');
+  sb.write(_generateUpdateMethod(element.name)); // TODO(adamjcook): See comment below on function definition.
   return sb.toString();
 }
 
@@ -86,7 +85,8 @@ String generateDirectives(String name, Iterable<String> extendNames,
   for (var extendName in extendNames) {
     if (extendName == null || !extendName.contains('-')) {
       extraImports.add(
-          "import 'package:graph_paper/src/common.dart' show DomProxyMixin;");
+          "import 'src/graph_paper/graph_paper.dart';"
+      );
     } else {
       var extendsImport = config.extendsImport;
       if (extendsImport == null) {
@@ -107,37 +107,18 @@ library graph_paper.$libName;
 
 import 'dart:html';
 import 'dart:js' show JsArray;
-import 'package:web_components/interop.dart' show registerDartType;
-import 'package:polymer/polymer.dart' show initMethod;
+import 'package:polymer/polymer.dart';
 ${extraImports.join('\n')}
 ''';
 }
 
-String _generateHeader(String name, String comment, String extendName) {
+// TODO(adamjcook): This is causing trouble with elements which extend base elements.
+String _generateUpdateMethod(String name) {
   var className = _toCamelCase(name);
-
-  if (extendName == null || !extendName.contains('-')) {
-    extendName = 'HtmlElement with DomProxyMixin';
-  } else {
-    extendName = _toCamelCase(extendName);
-  }
-
   return '''
-
-$comment
-class $className extends $extendName {
-  ${className}.created() : super.created();
+upgrade$className() => Polymer.register('$name', ${className});
 ''';
 }
-
-// TODO(adamjcook): This is causing trouble with elements which extend base elements.
-//String _generateUpdateMethod(String name) {
-//  var className = _toCamelCase(name);
-//  return '''
-//@initMethod
-//upgrade$className() => registerDartType('$name', ${className});
-//''';
-//}
 
 void _generateArgComment(Argument arg, StringBuffer sb) {
   var name = arg.name;
