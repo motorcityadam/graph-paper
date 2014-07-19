@@ -28,6 +28,12 @@ Import into Dart:
 Use the `update.dart` script to build the import .html and .dart files based on the sources in the `lib/src` directory.
 The `update.dart` tool expects to be run in the repository root.
 
-To build this project, run the following command in the repository root of the project:
+To build this project, run the following command from the repository root of the project:
 
-    `./tool/update.dart lib/src/graph_paper/graph_paper.html`
+    ./tool/update.dart lib/src/graph_paper/graph_paper.html
+    
+## Running Sample Application
+
+To run the sample application, run the following command from the repository root of the project:
+
+    pub serve
