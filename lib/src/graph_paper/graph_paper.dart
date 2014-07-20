@@ -14,6 +14,14 @@ import 'package:polymer/polymer.dart';
  */
 @CustomTag('graph-paper')
 class GraphPaper extends PolymerElement {
+  @published String units = 'inch';
+  @published double paperSizeX = 8.5;
+  @published double paperSizeY = 11.0;
+  @published String layout = 'portrait';
+  @published double gridSpacing = 0.3125;
+  @published double gridMargin = 0.1875;
+  @published String strokeWidth = 'thin';
+
   List clicks = toObservable([]);
 
   GraphPaper.created() : super.created() {}

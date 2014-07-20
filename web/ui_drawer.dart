@@ -14,9 +14,11 @@ import 'package:polymer/polymer.dart';
  */
 @CustomTag('ui-drawer')
 class UiDrawer extends PolymerElement {
-  @observable Map drawerState = toObservable({
+  @observable ObservableMap drawerState = toObservable({
     'collapsed': false
   });
+
+  @observable double spacing;
 
   UiDrawer.created() : super.created() {
     print('ui.drawer :: main()');
@@ -27,6 +29,9 @@ class UiDrawer extends PolymerElement {
     super.attached();
   }
 
+  /**
+   * Toggles the visibility of the drawer which contains the application controls.
+   */
   void toggleVisibility(Event e, var detail, Node target) {
     drawerState['collapsed'] = !drawerState['collapsed'];
   }

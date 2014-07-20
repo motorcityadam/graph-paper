@@ -9,26 +9,13 @@ TODO(adamjcook): add summary of element and element options/attributes here
 
 Options:
 
-1.  Units (units): inch* or mm
-2a. Paper size in X (paper-size-x) 8.5*
-2b. Paper size in Y (paper-size-y) 11*
-3.  Paper color (paper-color): (hex color code, i.e. #fff) #fff*
-4.  TODO(adamjcook): PPI (pixels per inch)???
-5.  Spacing (spacing):
-      if Units are inch: 0.1" to 2"
-      if Units are mm:   1mm to 40mm
-6.  Margin (margin):
-      if Units are inch: 0.2" to 2"
-      if Units are mm:   5mm to 20mm
-7.  Stroke width (stroke-width): 1*
-      thin:   1px
-      medium: 2px
-      thick:  3px
-8.  Stroke color (stroke-color): (hex color code, i.e. #e1e1e1) #e1e1e1*
-9a. Major line spacing in X (major-line-x-spacing): 0*
-9b. Major line spacing in Y (major-line-y-spacing): 0*
-10. TODO(adamjcook): Enable scalar zoom multipler???
-11. TODO(adamjcook): Enable snap points??? On click handler to find the nearest grid intersection and output it through graph-paper element API
+TODO(adamjcook): Paper color (paper-color): (hex color code, i.e. #fff) #fff*
+TODO(adamjcook): PPI (pixels per inch)???
+TODO(adamjcook): Stroke color (stroke-color): (hex color code, i.e. #e1e1e1) #e1e1e1*
+TODO(adamjcook): Major line spacing in X (major-line-x-spacing): 0*
+TODO(adamjcook): Major line spacing in Y (major-line-y-spacing): 0*
+TODO(adamjcook): Enable scalar zoom multipler???
+TODO(adamjcook): Enable snap points??? On click handler to find the nearest grid intersection and output it through graph-paper element API
 
 @group Graph Paper Elements
 @element graph-paper
@@ -37,7 +24,13 @@ Options:
 
 <link rel="import" href="../../../../packages/polymer/polymer.html">
 
-<polymer-element name="graph-paper">
+<polymer-element name="graph-paper" attributes="units
+                                                paperSizeX
+                                                paperSizeY
+                                                layout
+                                                gridSpacing
+                                                gridMargin
+                                                strokeWidth">
   <template>
     <link rel="stylesheet" href="graph_paper.css">
     <!-- TODO(adamjcook): on #paper, width and margin-top are adjusted when 'margin' attribute is adjusted -->
