@@ -48,7 +48,12 @@ class UiDrawer extends PolymerElement {
    */
   void unitsChanged(String oldValue, String newValue) {
     print('ui.drawer :: unitsChanged()');
-    print(newValue);
+    if (newValue == 'mm') {
+      paperSize = 'a4';
+    }
+    if (newValue == 'inch') {
+      paperSize = 'letter';
+    }
   }
 
   void paperSizeChanged(String oldValue, String newValue) {

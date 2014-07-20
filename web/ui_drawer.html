@@ -61,15 +61,22 @@ Options:
             <div center layout>
               <!-- TODO(adamjcook): add visibility controls for inch or mm units -->
               <div>Paper Size</div>
-              <paper-radio-group class="inchGroup" selected="{{paperSize}}">
-                <paper-radio-button name="letter" label="Letter (8.5&quot; x 11&quot;)"></paper-radio-button>
-                <paper-radio-button name="legal" label="Legal (8.5&quot; x 14&quot;)"></paper-radio-button>
-                <paper-radio-button name="tabloid" label="Tabloid (11&quot; x 17&quot;)"></paper-radio-button>
-              </paper-radio-group>
-              <!--<paper-radio-group class="mmGroup" selected="{{paperSize}}">-->
-              <!--<paper-radio-button name="a4" label="A4 (210mm x 297mm)"></paper-radio-button>-->
-              <!--<paper-radio-button name="a3" label="A3 (297mm x 420mm)"></paper-radio-button>-->
-              <!--</paper-radio-group>-->
+
+              <template if="{{units == 'inch'}}">
+                <paper-radio-group class="inchGroup" selected="{{paperSize}}">
+                  <paper-radio-button name="letter" label="Letter (8.5&quot; x 11&quot;)"></paper-radio-button>
+                  <paper-radio-button name="legal" label="Legal (8.5&quot; x 14&quot;)"></paper-radio-button>
+                  <paper-radio-button name="tabloid" label="Tabloid (11&quot; x 17&quot;)"></paper-radio-button>
+                </paper-radio-group>
+              </template>
+
+              <template if="{{units == 'mm'}}">
+                <paper-radio-group class="mmGroup" selected="{{paperSize}}">
+                  <paper-radio-button name="a4" label="A4 (210mm x 297mm)"></paper-radio-button>
+                  <paper-radio-button name="a3" label="A3 (297mm x 420mm)"></paper-radio-button>
+                </paper-radio-group>
+              </template>
+
             </div>
           </section>
           <section>
