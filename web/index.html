@@ -12,17 +12,8 @@ The complete set of contributors may be found at http://adamjcook.github.io/grap
   <script src="packages/web_components/dart_support.js"></script>
 
   <link rel="stylesheet" href="/assets/roboto-fontface/roboto-fontface.css">
-  <!-- NOTE: If any new Polymer imports are added here, also add the matching Dart imports in bootstrap.dart. -->
-  <link rel="import" href="packages/core_elements/core_icon_button.html">
-  <link rel="import" href="packages/core_elements/core_toolbar.html">
-  <link rel="import" href="packages/paper_elements/paper_checkbox.html">
-  <link rel="import" href="packages/paper_elements/paper_radio_group.html">
-  <link rel="import" href="packages/paper_elements/paper_shadow.html">
-  <link rel="import" href="packages/paper_elements/paper_slider.html">
 
-  <link rel="import" href="packages/graph_paper/graph_paper.html">
-
-  <link rel="import" href="ui_drawer.html">
+  <link rel="import" href="example_app.html">
 
   <style shim-shadowdom>
 
@@ -40,39 +31,13 @@ The complete set of contributors may be found at http://adamjcook.github.io/grap
       -webkit-font-smoothing: antialiased;
     }
 
-    #frameContainer {
-    }
-
-    #paperContainer {
-    }
-
-    /* Positions the graph-paper element in space and sets box shadow around paper for depth. */
-    graph-paper {
-      outline: 0;
-      float: left;
-      margin-left: 50px;
-      margin-top: 50px;
-      margin-bottom: 50px;
-    }
-
   </style>
 
 </head>
 <body unresolved touch-action="auto">
 
 <div id="mainContainer" vertical layout>
-
-  <!-- ===================== INTERNAL ===================== -->
-  <div id="frameContainer">
-    <graph-paper>
-      <paper-shadow z="1"></paper-shadow>
-    </graph-paper>
-  </div>
-  <!-- ===================== INTERNAL ===================== -->
-
-  <!-- ===================== UI DRAWER/CONTROLS ===================== -->
-  <ui-drawer></ui-drawer>
-  <!-- ===================== UI DRAWER/CONTROLS ===================== -->
+  <example-app></example-app>
 </div>
 
 <script type="application/dart" src="main.dart"></script>

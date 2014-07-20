@@ -14,6 +14,7 @@ import 'package:paper_elements/paper_slider.dart';
 
 import 'package:graph_paper/graph_paper.dart';
 
+import 'example_app.dart';
 import 'ui_drawer.dart';
 
 void registerElementsWithPolymer() {
@@ -23,6 +24,7 @@ void registerElementsWithPolymer() {
   print('bootstrap :: registerElementsWithPolymer()');
 
   // Register Polymer components
+  upgradeExampleApp();
   upgradeCoreIconButton();
   upgradeCoreToolbar();
   upgradePaperCheckbox();

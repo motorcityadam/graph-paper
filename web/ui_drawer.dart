@@ -2,7 +2,7 @@
 // This code may only be used under The MIT License found at http://adamjcook.github.io/graph-paper/LICENSE
 // The complete set of contributors may be found at http://adamjcook.github.io/graph-paper/CONTRIBUTORS
 
-library ui.drawer;
+library ui_drawer;
 
 import 'dart:async';
 import 'dart:html';
@@ -28,7 +28,7 @@ class UiDrawer extends PolymerElement {
 
 
   UiDrawer.created() : super.created() {
-    print('ui.drawer :: main()');
+    print('ui_drawer :: created()');
   }
 
   @override

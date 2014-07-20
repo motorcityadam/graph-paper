@@ -1,0 +1,16 @@
+/* Copyright (c) 2014 Adam Joseph Cook. All rights reserved. */
+/* This code may only be used under The MIT License found at http://adamjcook.github.io/graph-paper/LICENSE */
+/* The complete set of contributors may be found at http://adamjcook.github.io/graph-paper/CONTRIBUTORS */
+
+:host #frameContainer {
+    position: absolute;
+    overflow: visible;
+    float: left;
+    margin-left: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+:host graph-paper {
+    outline: 0;
+}
