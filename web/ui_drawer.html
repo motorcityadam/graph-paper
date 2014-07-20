@@ -51,7 +51,7 @@ Options:
           <section>
             <div center layout>
               <div>Units</div>
-              <paper-radio-group selected="inch">
+              <paper-radio-group selected="{{units}}">
                 <paper-radio-button name="inch" label="Inches"></paper-radio-button>
                 <paper-radio-button name="mm" label="Millimeters"></paper-radio-button>
               </paper-radio-group>
@@ -61,12 +61,12 @@ Options:
             <div center layout>
               <!-- TODO(adamjcook): add visibility controls for inch or mm units -->
               <div>Paper Size</div>
-              <paper-radio-group class="inchGroup" selected="letter">
+              <paper-radio-group class="inchGroup" selected="{{paperSize}}">
                 <paper-radio-button name="letter" label="Letter (8.5&quot; x 11&quot;)"></paper-radio-button>
                 <paper-radio-button name="legal" label="Legal (8.5&quot; x 14&quot;)"></paper-radio-button>
                 <paper-radio-button name="tabloid" label="Tabloid (11&quot; x 17&quot;)"></paper-radio-button>
               </paper-radio-group>
-              <!--<paper-radio-group class="mmGroup" selected="a4">-->
+              <!--<paper-radio-group class="mmGroup" selected="{{paperSize}}">-->
               <!--<paper-radio-button name="a4" label="A4 (210mm x 297mm)"></paper-radio-button>-->
               <!--<paper-radio-button name="a3" label="A3 (297mm x 420mm)"></paper-radio-button>-->
               <!--</paper-radio-group>-->
@@ -75,7 +75,7 @@ Options:
           <section>
             <div center layout>
               <div>Layout</div>
-              <paper-radio-group selected="portrait">
+              <paper-radio-group selected="{{layout}}">
                 <paper-radio-button name="portrait" label="Portrait"></paper-radio-button>
                 <paper-radio-button name="landscape" label="Landscape"></paper-radio-button>
               </paper-radio-group>
@@ -84,17 +84,17 @@ Options:
           <section>
             <div center layout>
               <div>Spacing</div>
-              <paper-slider value="{{spacing}}" max="3.1250" step="0.0625" editable snaps></paper-slider>
+              <paper-slider value="{{gridSpacing}}" max="3.1250" step="0.0625" editable snaps></paper-slider>
             </div>
             <div center layout>
               <div>Margin</div>
-              <paper-slider value="0.0625" max="3.1250" step="0.0625" editable snaps></paper-slider>
+              <paper-slider value="{{gridMargin}}" max="3.1250" step="0.0625" editable snaps></paper-slider>
             </div>
           </section>
           <section>
             <div center layout>
               <div>Stroke Width</div>
-              <paper-radio-group selected="thin">
+              <paper-radio-group selected="{{strokeWidth}}">
                 <paper-radio-button name="thin" label="Thin"></paper-radio-button>
                 <paper-radio-button name="medium" label="Medium"></paper-radio-button>
                 <paper-radio-button name="thick" label="Thick"></paper-radio-button>
@@ -104,7 +104,7 @@ Options:
           <section style="width: 120px;">
             <div center horizontal layout>
               <div flex>Snap to Grid</div>
-              <paper-checkbox></paper-checkbox>
+              <paper-checkbox checked="{{snapToGrid}}"></paper-checkbox>
             </div>
           </section>
         </div>
