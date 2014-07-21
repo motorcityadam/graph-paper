@@ -22,24 +22,13 @@ class GraphPaper extends PolymerElement {
   @published String strokeWidth = 'thin';
   @published String snapToGrid = false;
 
-  List clicks = toObservable([]);
+  List clickPoints = toObservable([]);
 
   GraphPaper.created() : super.created() {}
 
   @override
   void attached() {
     super.attached();
-
-    // TODO(adamjcook): DRY: use 'this' to get tag name of element.
-    ownerDocument.
-    getElementsByTagName('graph-paper')[0].
-    onClick.
-    listen((e){
-      title = 'The grid area was clicked at:';
-      var click = {'x': e.offset.x, 'y': e.offset.y}; clicks.insert(0, click);
-      print(click);
-//      fire('grid-click', detail: click);
-    });
   }
 
   /**
