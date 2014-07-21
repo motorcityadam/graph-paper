@@ -42,4 +42,43 @@ class GraphPaper extends PolymerElement {
     });
   }
 
+  /**
+   * Watcher functions for attribute changes on element.
+   */
+  void unitsChanged(String oldValue, String newValue) {
+    print('graph_paper :: unitsChanged()');
+    print(newValue);
+  }
+
+  void paperSizeChanged(String oldValue, String newValue) {
+    print('graph_paper :: paperSizeChanged()');
+    print(newValue);
+  }
+
+  void layoutChanged(String oldValue, String newValue) {
+    print('graph_paper :: layoutChanged()');
+    print(newValue);
+  }
+
+  void gridSpacingChanged(double oldValue, double newValue) {
+    print('graph_paper :: gridSpacingChanged()');
+    print(newValue);
+  }
+
+  void gridMarginChanged(double oldValue, double newValue) {
+    print('graph_paper :: gridMarginChanged()');
+    print(newValue);
+  }
+
+  void strokeWidthChanged(String oldValue, String newValue) {
+    print('graph_paper :: strokeWidthChanged()');
+    print(newValue);
+  }
+
+  void snapToGridChanged(String oldValue, String newValue) {
+    print('graph_paper :: snapToGridChanged()');
+    print(newValue);
+  }
+
+
 }

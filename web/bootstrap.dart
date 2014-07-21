@@ -24,6 +24,8 @@ void registerElementsWithPolymer() {
   print('bootstrap :: registerElementsWithPolymer()');
 
   // Register Polymer components
+  upgradeGraphPaper();
+  upgradeUiDrawer();
   upgradeExampleApp();
   upgradeCoreIconButton();
   upgradeCoreToolbar();
@@ -31,6 +33,4 @@ void registerElementsWithPolymer() {
   upgradePaperRadioGroup();
   upgradePaperShadow();
   upgradePaperSlider();
-  upgradeGraphPaper();
-  upgradeUiDrawer();
 }

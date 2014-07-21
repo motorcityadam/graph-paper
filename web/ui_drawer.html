@@ -12,7 +12,13 @@ The complete set of contributors may be found at http://adamjcook.github.io/grap
 <link rel="import" href="packages/paper_elements/paper_radio_group.html">
 <link rel="import" href="packages/paper_elements/paper_slider.html">
 
-<polymer-element name="ui-drawer">
+<polymer-element name="ui-drawer" attributes="units
+                                              paperSize
+                                              layout
+                                              gridSpacing
+                                              gridMargin
+                                              strokeWidth
+                                              snapToGrid">
   <template>
     <link rel="stylesheet" href="ui_drawer.css">
     <div id="uiControls" class="{{ {collapsed: drawerState['collapsed']} }}">

@@ -18,13 +18,13 @@ class UiDrawer extends PolymerElement {
     'collapsed': false
   });
 
-  @observable String units = 'inch';
-  @observable double paperSize = 'letter';
-  @observable String layout = 'portrait';
-  @observable double gridSpacing = 0.3125;
-  @observable double gridMargin = 0.1875;
-  @observable String strokeWidth = 'thin';
-  @observable bool snapToGrid = false;
+  @published String units;
+  @published double paperSize;
+  @published String layout;
+  @published double gridSpacing;
+  @published double gridMargin;
+  @published String strokeWidth;
+  @published bool snapToGrid;
 
 
   UiDrawer.created() : super.created() {
@@ -47,7 +47,8 @@ class UiDrawer extends PolymerElement {
    * Watcher functions for changes in the UI controls.
    */
   void unitsChanged(String oldValue, String newValue) {
-    print('ui.drawer :: unitsChanged()');
+    print('ui_drawer :: unitsChanged()');
+    print(newValue);
     if (newValue == 'mm') {
       paperSize = 'a4';
     }
@@ -57,32 +58,32 @@ class UiDrawer extends PolymerElement {
   }
 
   void paperSizeChanged(String oldValue, String newValue) {
-    print('ui.drawer :: paperSizeChanged()');
+    print('ui_drawer :: paperSizeChanged()');
     print(newValue);
   }
 
   void layoutChanged(String oldValue, String newValue) {
-    print('ui.drawer :: layoutChanged()');
+    print('ui_drawer :: layoutChanged()');
     print(newValue);
   }
 
   void gridSpacingChanged(double oldValue, double newValue) {
-    print('ui.drawer :: gridSpacingChanged()');
+    print('ui_drawer :: gridSpacingChanged()');
     print(newValue);
   }
 
   void gridMarginChanged(double oldValue, double newValue) {
-    print('ui.drawer :: gridMarginChanged()');
+    print('ui_drawer :: gridMarginChanged()');
     print(newValue);
   }
 
   void strokeWidthChanged(String oldValue, String newValue) {
-    print('ui.drawer :: strokeWidthChanged()');
+    print('ui_drawer :: strokeWidthChanged()');
     print(newValue);
   }
 
   void snapToGridChanged(String oldValue, String newValue) {
-    print('ui.drawer :: snapToGridChanged()');
+    print('ui_drawer :: snapToGridChanged()');
     print(newValue);
   }
 

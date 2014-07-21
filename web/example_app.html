@@ -12,19 +12,37 @@ The complete set of contributors may be found at http://adamjcook.github.io/grap
 
 <link rel="import" href="ui_drawer.html">
 
-<polymer-element name="example-app">
+<polymer-element name="example-app" attributes="units
+                                                paperSize
+                                                layout
+                                                gridSpacing
+                                                gridMargin
+                                                strokeWidth
+                                                snapToGrid">
   <template>
     <link rel="stylesheet" href="example_app.css">
 
     <!-- ===================== GRAPH-PAPER ===================== -->
     <div id="frameContainer">
-      <graph-paper></graph-paper>
+      <graph-paper units="{{units}}"
+                   paperSize="{{paperSize}}"
+                   layout="{{layout}}"
+                   gridSpacing="{{gridSpacing}}"
+                   gridMargin="{{gridMargin}}"
+                   strokeWidth="{{strokeWidth}}"
+                   snapToGrid="{{snapToGrid}}"></graph-paper>
       <paper-shadow z="1"></paper-shadow> <!-- OPTIONAL: Add some depth to the graph paper -->
     </div>
     <!-- ===================== GRAPH-PAPER ===================== -->
 
     <!-- ===================== UI DRAWER/CONTROLS ===================== -->
-    <ui-drawer></ui-drawer>
+    <ui-drawer units="{{units}}"
+               paperSize="{{paperSize}}"
+               layout="{{layout}}"
+               gridSpacing="{{gridSpacing}}"
+               gridMargin="{{gridMargin}}"
+               strokeWidth="{{strokeWidth}}"
+               snapToGrid="{{snapToGrid}}"></ui-drawer>
     <!-- ===================== UI DRAWER/CONTROLS ===================== -->
 
   </template>
