@@ -29,6 +29,7 @@
     right: 0;
     bottom: 0;
     left: 0;
+    background: #eee;
 }
 
 :host .uiTools {
@@ -46,6 +47,10 @@
 
 :host #controls.collapsed {
     opacity: 0;
+}
+
+:host .uiControlLabel {
+    white-space: nowrap;
 }
 
 :host paper-slider {

@@ -24,11 +24,27 @@ class GraphPaper extends PolymerElement {
 
   List clickPoints = toObservable([]);
 
+  DivElement _paper; // div tag with id #paper inside element template
+
+  int _ppi = 96; // Pixels per inch at 100% zoom.
+
   GraphPaper.created() : super.created() {}
 
   @override
   void attached() {
     super.attached();
+
+    // TODO(adamjcook): Currently, this is just output to the console, this needs to be accessible externally.
+    onClick.
+    listen((e){
+      title = 'The grid area was clicked at:';
+      var clickPoint = {'x': e.offset.x, 'y': e.offset.y}; clickPoints.insert(0, clickPoint);
+      print(clickPoint);
+    });
+
+    _paper = $['paper'];
+
+    changePaperSize();
   }
 
   /**
@@ -41,7 +57,7 @@ class GraphPaper extends PolymerElement {
 
   void paperSizeChanged(String oldValue, String newValue) {
     print('graph_paper :: paperSizeChanged()');
-    print(newValue);
+    changePaperSize();
   }
 
   void layoutChanged(String oldValue, String newValue) {
@@ -69,5 +85,23 @@ class GraphPaper extends PolymerElement {
     print(newValue);
   }
 
+  void changePaperSize() {
+    print('graph_paper :: changePaperSize()');
+    if (units == 'inch') {
+      if (paperSize == 'letter') {
+        print('setting width and height for ' + paperSize);
+        _paper.style.width = (8.5 * _ppi).toString() + 'px';
+        _paper.style.height = (11 * _ppi).toString() + 'px';
+      } else if (paperSize == 'legal') {
+        print('setting width and height for ' + paperSize);
+        _paper.style.width = (8.5 * _ppi).toString() + 'px';
+        _paper.style.height = (14 * _ppi).toString() + 'px';
+      } else if (paperSize == 'tabloid') {
+        print('setting width and height for ' + paperSize);
+        _paper.style.width = (11 * _ppi).toString() + 'px';
+        _paper.style.height = (17 * _ppi).toString() + 'px';
+      }
+    }
+  }
 
 }
