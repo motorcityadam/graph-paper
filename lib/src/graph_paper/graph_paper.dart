@@ -7,6 +7,7 @@ library graph_paper;
 import 'dart:async';
 import 'dart:html';
 
+import 'package:logging/logging.dart';
 import 'package:polymer/polymer.dart';
 
 /**
@@ -20,13 +21,15 @@ class GraphPaper extends PolymerElement {
   @published double gridSpacing = 0.3125;
   @published double gridMargin = 0.1875;
   @published String strokeWidth = 'thin';
-  @published String snapToGrid = false;
+  @published bool snapToGrid = false;
+  @published bool loggingEnabled = false;
 
   List clickPoints = toObservable([]);
 
   DivElement _paper; // div tag with id #paper inside element template
+  double _ppi = 96.0;     // Pixels per inch at 100% zoom.
 
-  int _ppi = 96; // Pixels per inch at 100% zoom.
+  final Logger _logger = new Logger('graph-paper');
 
   GraphPaper.created() : super.created() {}
 
@@ -35,73 +38,111 @@ class GraphPaper extends PolymerElement {
     super.attached();
 
     // TODO(adamjcook): Currently, this is just output to the console, this needs to be accessible externally.
-    onClick.
-    listen((e){
-      title = 'The grid area was clicked at:';
-      var clickPoint = {'x': e.offset.x, 'y': e.offset.y}; clickPoints.insert(0, clickPoint);
-      print(clickPoint);
-    });
+//    onClick.
+//    listen((e){
+//      title = 'The grid area was clicked at:';
+//      var clickPoint = {'x': e.offset.x, 'y': e.offset.y}; clickPoints.insert(0, clickPoint);
+//      print(clickPoint);
+//    });
 
     _paper = $['paper'];
 
+    _initLogging();
     changePaperSize();
+  }
+
+  void _initLogging() {
+    if (loggingEnabled == true) {
+      Logger.root.level = Level.ALL;
+      Logger.root.onRecord.listen((LogRecord rec) {
+        print('${rec.level.name}: ${rec.time}: ${rec.message}');
+      });
+    }
+  }
+
+  String _pixelsToString(double pixels) {
+    return pixels.toString() + 'px';
+  }
+
+  double _stringToPixels(String pixels_string) {
+    return double.parse(pixels_string.replaceAll('px', ''));
   }
 
   /**
    * Watcher functions for attribute changes on element.
    */
   void unitsChanged(String oldValue, String newValue) {
-    print('graph_paper :: unitsChanged()');
-    print(newValue);
+    changeUnits();
+    changePaperSize();
+    changeLayout();
   }
 
   void paperSizeChanged(String oldValue, String newValue) {
-    print('graph_paper :: paperSizeChanged()');
     changePaperSize();
+    changeLayout();
   }
 
   void layoutChanged(String oldValue, String newValue) {
-    print('graph_paper :: layoutChanged()');
-    print(newValue);
+    changeLayout();
   }
 
   void gridSpacingChanged(double oldValue, double newValue) {
-    print('graph_paper :: gridSpacingChanged()');
-    print(newValue);
+
   }
 
   void gridMarginChanged(double oldValue, double newValue) {
-    print('graph_paper :: gridMarginChanged()');
-    print(newValue);
+
   }
 
   void strokeWidthChanged(String oldValue, String newValue) {
-    print('graph_paper :: strokeWidthChanged()');
-    print(newValue);
+
   }
 
   void snapToGridChanged(String oldValue, String newValue) {
-    print('graph_paper :: snapToGridChanged()');
-    print(newValue);
+
+  }
+
+  void changeUnits() {
+    if (units == 'inch') { paperSize = 'letter'; };
+    if (units == 'mm') { paperSize = 'a4'; };
+    _logger.info('units changed to $units');
   }
 
   void changePaperSize() {
-    print('graph_paper :: changePaperSize()');
     if (units == 'inch') {
       if (paperSize == 'letter') {
-        print('setting width and height for ' + paperSize);
-        _paper.style.width = (8.5 * _ppi).toString() + 'px';
-        _paper.style.height = (11 * _ppi).toString() + 'px';
+        _paper.style.width = _pixelsToString((8.5 * _ppi));
+        _paper.style.height = _pixelsToString((11.0 * _ppi));
       } else if (paperSize == 'legal') {
-        print('setting width and height for ' + paperSize);
-        _paper.style.width = (8.5 * _ppi).toString() + 'px';
-        _paper.style.height = (14 * _ppi).toString() + 'px';
+        _paper.style.width = _pixelsToString((8.5 * _ppi));
+        _paper.style.height = _pixelsToString((14.0 * _ppi));
       } else if (paperSize == 'tabloid') {
-        print('setting width and height for ' + paperSize);
-        _paper.style.width = (11 * _ppi).toString() + 'px';
-        _paper.style.height = (17 * _ppi).toString() + 'px';
+        _paper.style.width = _pixelsToString((11.0 * _ppi));
+        _paper.style.height = _pixelsToString((17.0 * _ppi));
       }
     }
+    if (units == 'mm') {
+      if (paperSize == 'a4') {
+        _paper.style.width = _pixelsToString(((210/25.4) * _ppi));
+        _paper.style.height = _pixelsToString(((297/25.4) * _ppi));
+      } else if (paperSize == 'a3') {
+        _paper.style.width = _pixelsToString(((297/25.4) * _ppi));
+        _paper.style.height = _pixelsToString(((420/25.4) * _ppi));
+      }
+    }
+    _logger.info('paper size changed to $units $paperSize');
+  }
+
+  void changeLayout() {
+    var oldWidth = _stringToPixels(_paper.style.width);
+    var oldHeight = _stringToPixels(_paper.style.height);
+
+    if ((layout == 'portrait' && (oldWidth > oldHeight)) ||
+        (layout == 'landscape' && (oldWidth < oldHeight))) {
+      _paper.style.width = _pixelsToString(oldHeight);
+      _paper.style.height = _pixelsToString(oldWidth);
+    }
+    _logger.info('layout changed to $paperSize $layout');
   }
 
 }

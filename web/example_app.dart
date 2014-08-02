@@ -12,17 +12,15 @@ import 'package:polymer/polymer.dart';
 @CustomTag('example-app')
 class ExampleApp extends PolymerElement {
 
-  @observable String units = 'inch';
-  @observable double paperSize = 'letter';
-  @observable String layout = 'portrait';
-  @observable double gridSpacing = 0.3125;
-  @observable double gridMargin = 0.1875;
-  @observable String strokeWidth = 'thin';
-  @observable bool snapToGrid = false;
+  @observable String units;
+  @observable String paperSize;
+  @observable String layout;
+  @observable double gridSpacing;
+  @observable double gridMargin;
+  @observable String strokeWidth;
+  @observable bool snapToGrid;
 
-  ExampleApp.created() : super.created() {
-    print('example_app :: created()');
-  }
+  ExampleApp.created() : super.created() {}
 
   @override
   void attached() {

@@ -13,6 +13,5 @@ import 'bootstrap.dart';
 
 @polymer.initMethod
 void main() {
-  print('main :: main()');
   registerElementsWithPolymer();
 }

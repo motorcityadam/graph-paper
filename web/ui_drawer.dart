@@ -8,6 +8,8 @@ import 'dart:async';
 import 'dart:html';
 
 import 'package:polymer/polymer.dart';
+// TODO(adamjcook): remove local lib statechart, statechart should be pulled from pub.
+//import 'package:statechart/client.dart';
 
 /**
  * TODO(adamjcook): add comments for this element
@@ -19,22 +21,107 @@ class UiDrawer extends PolymerElement {
   });
 
   @published String units;
-  @published double paperSize;
+  @published String paperSize;
   @published String layout;
   @published double gridSpacing;
   @published double gridMargin;
   @published String strokeWidth;
   @published bool snapToGrid;
 
+//  StateImpl _state_chart;
 
-  UiDrawer.created() : super.created() {
-    print('ui_drawer :: created()');
-  }
+
+  UiDrawer.created() : super.created() {}
 
   @override
   void attached() {
     super.attached();
+//    _state_chart = initStatechart();
   }
+//
+//  StateImpl initStatechart() {
+//    var state_chart = new Statechart();
+//
+//    state_chart.pivot
+//      ..addState(
+//        name: 'inch',
+//        enter: (StateEvent e) => units='inch',
+//        mount: (state_chart) => state_chart
+//          ..addState(
+//            name: 'letter',
+//            enter: (StateEvent e) => paperSize='letter',
+//            mount: (router) => router
+//              ..addState(
+//                name: 'portrait',
+//                enter: (StateEvent e) => layout='portrait'
+//            )
+//              ..addState(
+//                name: 'landscape',
+//                enter: (StateEvent e) => layout='landscape'
+//            )
+//          )
+//          ..addState(
+//            name: 'legal',
+//            enter: (StateEvent e) => paperSize='legal',
+//            mount: (router) => router
+//              ..addState(
+//                name: 'portrait',
+//                enter: (StateEvent e) => layout='portrait'
+//            )
+//              ..addState(
+//                name: 'landscape',
+//                enter: (StateEvent e) => layout='landscape'
+//            )
+//          )
+//          ..addState(
+//            name: 'tabloid',
+//            enter: (StateEvent e) => paperSize='tabloid',
+//            mount: (router) => router
+//              ..addState(
+//                name: 'portrait',
+//                enter: (StateEvent e) => layout='portrait'
+//            )
+//              ..addState(
+//                name: 'landscape',
+//                enter: (StateEvent e) => layout='landscape'
+//            )
+//        )
+//      )
+//      ..addState(
+//        name: 'mm',
+//        enter: (StateEvent e) => units='mm',
+//        mount: (state_chart) => state_chart
+//          ..addState(
+//            name: 'a4',
+//            enter: (StateEvent e) => paperSize='a4',
+//            mount: (router) => router
+//              ..addState(
+//                name: 'portrait',
+//                enter: (StateEvent e) => layout='portrait'
+//            )
+//              ..addState(
+//                name: 'landscape',
+//                enter: (StateEvent e) => layout='landscape'
+//            )
+//          )
+//          ..addState(
+//            name: 'a3',
+//            enter: (StateEvent e) => paperSize='a3',
+//            mount: (router) => router
+//              ..addState(
+//                name: 'portrait',
+//                enter: (StateEvent e) => layout='portrait'
+//            )
+//              ..addState(
+//                name: 'landscape',
+//                enter: (StateEvent e) => layout='landscape'
+//            )
+//          )
+//        );
+//
+//    return state_chart;
+//  }
+
 
   /**
    * Toggles the visibility of the drawer which contains the application controls.
@@ -46,46 +133,11 @@ class UiDrawer extends PolymerElement {
   /**
    * Watcher functions for changes in the UI controls.
    */
-  void unitsChanged(String oldValue, String newValue) {
-    print('ui_drawer :: unitsChanged()');
-    print(newValue);
-    if (newValue == 'mm') {
-      paperSize = 'a4';
-    }
-    if (newValue == 'inch') {
-      paperSize = 'letter';
-    }
-  }
-
-  void paperSizeChanged(String oldValue, String newValue) {
-    print('ui_drawer :: paperSizeChanged()');
-    print(newValue);
-  }
-
-  void layoutChanged(String oldValue, String newValue) {
-    print('ui_drawer :: layoutChanged()');
-    print(newValue);
-  }
-
-  void gridSpacingChanged(double oldValue, double newValue) {
-    print('ui_drawer :: gridSpacingChanged()');
-    print(newValue);
-  }
-
-  void gridMarginChanged(double oldValue, double newValue) {
-    print('ui_drawer :: gridMarginChanged()');
-    print(newValue);
-  }
-
-  void strokeWidthChanged(String oldValue, String newValue) {
-    print('ui_drawer :: strokeWidthChanged()');
-    print(newValue);
-  }
-
-  void snapToGridChanged(String oldValue, String newValue) {
-    print('ui_drawer :: snapToGridChanged()');
-    print(newValue);
-  }
+//  void unitsChanged(String oldValue, String newValue) {
+//    print('ui_drawer :: unitsChanged()');
+//    print(newValue);
+////    _state_chart.goto('/' + newValue);
+//  }
 
 }
 

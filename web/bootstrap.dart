@@ -21,8 +21,6 @@ void registerElementsWithPolymer() {
   // Initialize Polymer.
   startPolymer([], false);
 
-  print('bootstrap :: registerElementsWithPolymer()');
-
   // Register Polymer components
   upgradeGraphPaper();
   upgradeUiDrawer();
