@@ -14,13 +14,16 @@
 :host #paper-content {
     /* spec => width: 816px, height: 1056px - letter size, portrait at 100% zoom */
     /* default - letter size, portrait, 0.3125" spacing (30px), 0.1875" margin (18px) */
-    width: 780px;
-    height: 1020px;
-    margin-top: 18px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 18px;
     border: 1px solid #e1e1e1;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
+    position: absolute;
+    height: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
 }

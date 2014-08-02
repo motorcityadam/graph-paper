@@ -26,8 +26,9 @@ class GraphPaper extends PolymerElement {
 
   List clickPoints = toObservable([]);
 
-  DivElement _paper; // div tag with id #paper inside element template
-  double _ppi = 96.0;     // Pixels per inch at 100% zoom.
+  DivElement _paper;        // div tag with id #paper inside element template
+  DivElement _paperContent; // div tag with id #paper-content inside element template
+  double _ppi = 96.0;       // Pixels per inch at 100% zoom.
 
   final Logger _logger = new Logger('graph-paper');
 
@@ -38,9 +39,11 @@ class GraphPaper extends PolymerElement {
     super.attached();
 
     _paper = $['paper'];
+    _paperContent = $['paper-content'];
 
     _initLogging();
     changePaperSize();
+    changeMargin();
   }
 
   void _initLogging() {
@@ -83,7 +86,7 @@ class GraphPaper extends PolymerElement {
   }
 
   void gridMarginChanged(double oldValue, double newValue) {
-
+    changeMargin();
   }
 
   void strokeWidthChanged(String oldValue, String newValue) {
@@ -135,6 +138,11 @@ class GraphPaper extends PolymerElement {
       _paper.style.height = _pixelsToString(oldWidth);
     }
     _logger.info('layout changed to $paperSize $layout');
+  }
+
+  void changeMargin() {
+    _paperContent.style.margin = _pixelsToString(gridMargin * _ppi);
+    _logger.info('margin changed to $gridMargin');
   }
 
 }
