@@ -26,7 +26,7 @@ class UiDrawer extends PolymerElement {
   @published double gridSpacing;
   @published double gridMargin;
   @published String strokeWidth;
-  @published bool snapToGrid;
+//  @published bool snapToGrid;
 
 //  StateImpl _state_chart;
 

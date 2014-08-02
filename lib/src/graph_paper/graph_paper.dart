@@ -21,7 +21,7 @@ class GraphPaper extends PolymerElement {
   @published double gridSpacing = 0.3125;
   @published double gridMargin = 0.1875;
   @published String strokeWidth = 'thin';
-  @published bool snapToGrid = false;
+//  @published bool snapToGrid = false; // TODO(adamjcook): Implement this.
   @published bool loggingEnabled = false;
 
   List clickPoints = toObservable([]);
@@ -36,14 +36,6 @@ class GraphPaper extends PolymerElement {
   @override
   void attached() {
     super.attached();
-
-    // TODO(adamjcook): Currently, this is just output to the console, this needs to be accessible externally.
-//    onClick.
-//    listen((e){
-//      title = 'The grid area was clicked at:';
-//      var clickPoint = {'x': e.offset.x, 'y': e.offset.y}; clickPoints.insert(0, clickPoint);
-//      print(clickPoint);
-//    });
 
     _paper = $['paper'];
 
@@ -98,9 +90,9 @@ class GraphPaper extends PolymerElement {
 
   }
 
-  void snapToGridChanged(String oldValue, String newValue) {
-
-  }
+//  void snapToGridChanged(String oldValue, String newValue) {
+//
+//  }
 
   void changeUnits() {
     if (units == 'inch') { paperSize = 'letter'; };
