@@ -38,27 +38,6 @@ TODO(adamjcook): Enable snap points??? On click handler to find the nearest grid
       <div id="paper-content">
         <content></content>
         <div id="grid-container" style="width:100%;height:100%;overflow:hidden;">
-          <svg id="svg-grid" zoomAndPan="disable" currentscale="2" xmlns="http://www.w3.org/2000/svg" version="1.2" width="3000" height="2000">
-
-            <pattern id="grid-pattern" patternUnits="userSpaceOnUse" x="0" y="0" width="150" height="150">
-              <g id="sharp" transform="translate(-0.5,-0.5)">
-                <line class="lineH" x1="0" x2="150" y1="30" y2="30" stroke="#e1e1e1" stroke-width="1"></line>
-                <line class="lineH" x1="0" x2="150" y1="60" y2="60" stroke="#e1e1e1" stroke-width="1"></line>
-                <line class="lineH" x1="0" x2="150" y1="90" y2="90" stroke="#e1e1e1" stroke-width="1"></line>
-                <line class="lineH" x1="0" x2="150" y1="120" y2="120" stroke="#e1e1e1" stroke-width="1"></line>
-
-                <line class="lineV" x1="30" x2="30" y1="0" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
-                <line class="lineV" x1="60" x2="60" y1="0" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
-                <line class="lineV" x1="90" x2="90" y1="0" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
-                <line class="lineV" x1="120" x2="120" y1="0" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
-
-                <line class="lineV" x1="150" x2="150" y1="0" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
-                <line class="lineH" x1="0" x2="150" y1="150" y2="150" stroke="#e1e1e1" stroke-width="1"></line>
-              </g>
-            </pattern>
-
-            <rect id="grid" fill="url(#grid-pattern)" width="3000" height="2000"></rect>
-          </svg>
         </div>
       </div>
     </div>

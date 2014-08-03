@@ -6,9 +6,11 @@ library graph_paper;
 
 import 'dart:async';
 import 'dart:html';
+import 'dart:svg';
 
 import 'package:logging/logging.dart';
 import 'package:polymer/polymer.dart';
+
 
 /**
  * TODO(adamjcook): add comments for this element
@@ -18,7 +20,7 @@ class GraphPaper extends PolymerElement {
   @published String units = 'inch';
   @published String paperSize = 'letter';
   @published String layout = 'portrait';
-  @published double gridSpacing = 0.3125;
+  @published double gridSpacing = 0.1250;
   @published double gridMargin = 0.1875;
   @published String strokeWidth = 'thin';
 //  @published bool snapToGrid = false; // TODO(adamjcook): Implement this.
@@ -26,9 +28,18 @@ class GraphPaper extends PolymerElement {
 
   List clickPoints = toObservable([]);
 
-  DivElement _paper;        // div tag with id #paper inside element template
-  DivElement _paperContent; // div tag with id #paper-content inside element template
-  double _ppi = 96.0;       // Pixels per inch at 100% zoom.
+  DivElement _paper;         // div tag with id #paper inside element template (wraps the entire paper)
+  DivElement _paperContent;  // div tag with id #paper-content inside element template (wraps all content on the paper)
+  DivElement _gridContainer; // div tag with id #grid-container inside element template (wraps the actual SVG grid)
+  SvgSvgElement _svgElement = new SvgSvgElement();
+  PatternElement _minorGridPattern = new PatternElement();
+  PathElement _minorGridPath = new PathElement();
+  PathElement _rightBorderGridPath = new PathElement();
+  PathElement _bottomBorderGridPath = new PathElement();
+  PathSegList _minorGridPathSegments;
+  PathSegList _rightBorderPathSegments;
+  PathSegList _bottomBorderPathSegments;
+  double _ppi = 96.0;        // Pixels per inch at 100% zoom.
 
   final Logger _logger = new Logger('graph-paper');
 
@@ -40,10 +51,14 @@ class GraphPaper extends PolymerElement {
 
     _paper = $['paper'];
     _paperContent = $['paper-content'];
+    _gridContainer = $['grid-container'];
 
     _initLogging();
+    _initSvgGrid();
+
     changePaperSize();
-    changeMargin();
+    changeGridMargin();
+    changeGridSpacing();
   }
 
   void _initLogging() {
@@ -53,6 +68,51 @@ class GraphPaper extends PolymerElement {
         print('${rec.level.name}: ${rec.time}: ${rec.message}');
       });
     }
+  }
+
+  void _initSvgGrid() {
+    var defsElement = new DefsElement();
+    var rectElement = new RectElement();
+
+    _svgElement.setAttribute('width', '100%');
+    _svgElement.setAttribute('height', '100%');
+    _svgElement.setAttribute('zoomAndPan', 'disabled');
+    _svgElement.setAttribute('currentscale', '2');
+    _gridContainer.append(_svgElement);
+    _svgElement.id = 'svg-grid';
+
+    _svgElement.append(defsElement);
+
+    _minorGridPattern.setAttribute('patternUnits', 'userSpaceOnUse');
+    defsElement.append(_minorGridPattern);
+    _minorGridPattern.id = 'minor-grid';
+
+    _minorGridPath.setAttribute('fill', 'none');
+    _minorGridPath.setAttribute('stroke', 'gray');
+    _minorGridPath.setAttribute('stroke-width', '0.5');
+    _minorGridPattern.append(_minorGridPath);
+
+    _minorGridPathSegments = _minorGridPath.pathSegList;
+
+    rectElement.setAttribute('width', '3000');
+    rectElement.setAttribute('height', '3000');
+    rectElement.setAttribute('fill', 'url(#minor-grid)');
+    _svgElement.append(rectElement);
+    rectElement.id = 'grid';
+
+    _rightBorderGridPath.setAttribute('fill', 'none');
+    _rightBorderGridPath.setAttribute('stroke', 'gray');
+    _rightBorderGridPath.setAttribute('stroke-width', '0.5');
+    _svgElement.append(_rightBorderGridPath);
+    _bottomBorderGridPath.setAttribute('fill', 'none');
+    _bottomBorderGridPath.setAttribute('stroke', 'gray');
+    _bottomBorderGridPath.setAttribute('stroke-width', '0.5');
+    _svgElement.append(_bottomBorderGridPath);
+
+    _rightBorderPathSegments = _rightBorderGridPath.pathSegList;
+    _bottomBorderPathSegments = _bottomBorderGridPath.pathSegList;
+
+    _logger.info('SVG grid created for $gridSpacing spacing');
   }
 
   String _pixelsToString(double pixels) {
@@ -70,23 +130,27 @@ class GraphPaper extends PolymerElement {
     changeUnits();
     changePaperSize();
     changeLayout();
+    changeGridSpacing();
   }
 
   void paperSizeChanged(String oldValue, String newValue) {
     changePaperSize();
     changeLayout();
+    changeGridSpacing();
   }
 
   void layoutChanged(String oldValue, String newValue) {
     changeLayout();
+    changeGridSpacing();
   }
 
   void gridSpacingChanged(double oldValue, double newValue) {
-
+    changeGridSpacing();
   }
 
   void gridMarginChanged(double oldValue, double newValue) {
-    changeMargin();
+    changeGridMargin();
+    changeGridSpacing();
   }
 
   void strokeWidthChanged(String oldValue, String newValue) {
@@ -140,9 +204,31 @@ class GraphPaper extends PolymerElement {
     _logger.info('layout changed to $paperSize $layout');
   }
 
-  void changeMargin() {
+  void changeGridMargin() {
     _paperContent.style.margin = _pixelsToString(gridMargin * _ppi);
-    _logger.info('margin changed to $gridMargin');
+    _logger.info('grid margin changed to $gridMargin');
+  }
+
+  void changeGridSpacing() {
+    // Adjust minor grid body.
+    _minorGridPattern.setAttribute('width', (gridSpacing * _ppi).toString());
+    _minorGridPattern.setAttribute('height', (gridSpacing * _ppi).toString());
+    _minorGridPathSegments.clear();
+    _minorGridPathSegments.appendItem(_minorGridPath.createSvgPathSegMovetoAbs((gridSpacing * _ppi), 0));
+    _minorGridPathSegments.appendItem(_minorGridPath.createSvgPathSegLinetoAbs(0, 0));
+    _minorGridPathSegments.appendItem(_minorGridPath.createSvgPathSegLinetoAbs(0, (gridSpacing * _ppi)));
+
+    // Add right and bottom borders around #grid-container.
+    _rightBorderPathSegments.clear();
+    _rightBorderPathSegments.appendItem(_rightBorderGridPath.createSvgPathSegMovetoAbs(_paperContent.offsetWidth, 0));
+    _rightBorderPathSegments.appendItem(_rightBorderGridPath.createSvgPathSegLinetoAbs(_paperContent.offsetWidth, 0));
+    _rightBorderPathSegments.appendItem(_rightBorderGridPath.createSvgPathSegLinetoAbs(_paperContent.offsetWidth, _paperContent.offsetHeight));
+    _bottomBorderPathSegments.clear();
+    _bottomBorderPathSegments.appendItem(_bottomBorderGridPath.createSvgPathSegMovetoAbs(0, _paperContent.offsetHeight));
+    _bottomBorderPathSegments.appendItem(_bottomBorderGridPath.createSvgPathSegLinetoAbs(0, _paperContent.offsetHeight));
+    _bottomBorderPathSegments.appendItem(_bottomBorderGridPath.createSvgPathSegLinetoAbs(_paperContent.offsetWidth, _paperContent.offsetHeight));
+
+    _logger.info('grid spacing changed to $gridSpacing');
   }
 
 }
