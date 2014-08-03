@@ -5,7 +5,7 @@ Web component for generating various types of engineering graph paper using SVG,
 
 ## Overview
 
-![Screenshot](https://raw.githubusercontent.com/adamjcook/graph-paper/development/doc/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/adamjcook/graph-paper/master/doc/screenshot.png)
 
 graph-paper provides a customizable user interface element for generating engineering graph paper.
 
