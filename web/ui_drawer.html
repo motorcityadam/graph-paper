@@ -1,7 +1,7 @@
 <!--
 Copyright (c) 2014 Adam Joseph Cook. All rights reserved.
-This code may only be used under The MIT License found at http://adamjcook.github.io/graph-paper/LICENSE
-The complete set of contributors may be found at http://adamjcook.github.io/graph-paper/CONTRIBUTORS
+This code may only be used under The MIT License found at https://github.com/adamjcook/graph-paper/blob/master/LICENSE
+The complete set of contributors may be found at https://github.com/adamjcook/graph-paper/blob/master/CONTRIBUTORS
 -->
 
 <link rel="import" href="packages/polymer/polymer.html">
@@ -16,8 +16,7 @@ The complete set of contributors may be found at http://adamjcook.github.io/grap
                                               paperSize
                                               layout
                                               gridSpacing
-                                              gridMargin
-                                              strokeWidth">
+                                              gridMargin">
   <template>
     <link rel="stylesheet" href="ui_drawer.css">
     <div id="uiControls" class="{{ {collapsed: drawerState['collapsed']} }}">
@@ -77,16 +76,16 @@ The complete set of contributors may be found at http://adamjcook.github.io/grap
               <paper-slider value="{{gridMargin}}" max="3.1250" step="0.0625" editable snaps></paper-slider>
             </div>
           </section>
-          <section>
-            <div center layout>
-              <div class="uiControlLabel">Stroke Width</div>
-              <paper-radio-group selected="{{strokeWidth}}">
-                <paper-radio-button name="thin" label="Thin"></paper-radio-button>
-                <paper-radio-button name="medium" label="Medium"></paper-radio-button>
-                <paper-radio-button name="thick" label="Thick"></paper-radio-button>
-              </paper-radio-group>
-            </div>
-          </section>
+          <!--<section>-->
+            <!--<div center layout>-->
+              <!--<div class="uiControlLabel">Stroke Width</div>-->
+              <!--<paper-radio-group selected="{{strokeWidth}}">-->
+                <!--<paper-radio-button name="thin" label="Thin"></paper-radio-button>-->
+                <!--<paper-radio-button name="medium" label="Medium"></paper-radio-button>-->
+                <!--<paper-radio-button name="thick" label="Thick"></paper-radio-button>-->
+              <!--</paper-radio-group>-->
+            <!--</div>-->
+          <!--</section>-->
           <!--<section style="width: 120px;">-->
             <!--<div center horizontal layout>-->
               <!--<div flex>Snap to Grid</div>-->

@@ -1,6 +1,6 @@
 // Copyright (c) 2014 Adam Joseph Cook. All rights reserved.
-// This code may only be used under The MIT License found at http://adamjcook.github.io/graph-paper/LICENSE
-// The complete set of contributors may be found at http://adamjcook.github.io/graph-paper/CONTRIBUTORS
+// This code may only be used under The MIT License found at https://github.com/adamjcook/graph-paper/blob/master/LICENSE
+// The complete set of contributors may be found at https://github.com/adamjcook/graph-paper/blob/master/CONTRIBUTORS
 
 library graph_paper;
 
@@ -13,7 +13,21 @@ import 'package:polymer/polymer.dart';
 
 
 /**
- * TODO(adamjcook): add comments for this element
+ * graph-paper
+ *
+ * Summary:
+ *   graph-paper provides a customizable user interface element for generating engineering graph paper.
+ *
+ * Attributes:
+ *   | Name           | Type    | Default    | Description                                                                                                                                                      |
+ *   | -------------- | ------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+ *   | units          | String  | 'inch'     | Available options are 'inch' and 'mm'. These are the measurement units used when computing paper size.                                                           |
+ *   | paperSize      | String  | 'letter'   | Available options are 'letter', 'legal', 'tabloid' when the 'units' attribute is 'inch'. Available options are 'a4' and 'a3' when the 'units' attribute is 'mm'. |
+ *   | layout         | String  | 'portrait' | Available options are 'portrait' and 'landscape'. This sets the orientation of the paper on the screen.                                                          |
+ *   | gridSpacing    | double  | 0.1250     | Controls the spacing between two consecutive vertical and horizontal grid lines. A grid spacing value of '1' equals '96' pixels.                                 |
+ *   | gridMargin     | double  | 0.1875     | Controls the margin around the grid area. A margin value of '1' equals '96' pixels.                                                                              |
+ *   | loggingEnabled | boolean | false      | Activates logging to the console of various internal library events.                                                                                             |
+ *
  */
 @CustomTag('graph-paper')
 class GraphPaper extends PolymerElement {
@@ -22,7 +36,7 @@ class GraphPaper extends PolymerElement {
   @published String layout = 'portrait';
   @published double gridSpacing = 0.1250;
   @published double gridMargin = 0.1875;
-  @published String strokeWidth = 'thin';
+//  @published String strokeWidth = 'thin'; // TODO(adamjcook): Implement this.
 //  @published bool snapToGrid = false; // TODO(adamjcook): Implement this.
   @published bool loggingEnabled = false;
 

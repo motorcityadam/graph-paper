@@ -1,6 +1,6 @@
 // Copyright (c) 2014 Adam Joseph Cook. All rights reserved.
-// This code may only be used under The MIT License found at http://adamjcook.github.io/graph-paper/LICENSE
-// The complete set of contributors may be found at http://adamjcook.github.io/graph-paper/CONTRIBUTORS
+// This code may only be used under The MIT License found at https://github.com/adamjcook/graph-paper/blob/master/LICENSE
+// The complete set of contributors may be found at https://github.com/adamjcook/graph-paper/blob/master/CONTRIBUTORS
 
 library main;
 

@@ -1,25 +1,24 @@
 <!--
 Copyright (c) 2014 Adam Joseph Cook. All rights reserved.
-This code may only be used under The MIT License found at http://adamjcook.github.io/graph-paper/LICENSE
-The complete set of contributors may be found at http://adamjcook.github.io/graph-paper/CONTRIBUTORS
+This code may only be used under The MIT License found at https://github.com/adamjcook/graph-paper/blob/master/LICENSE
+The complete set of contributors may be found at https://github.com/adamjcook/graph-paper/blob/master/CONTRIBUTORS
 -->
 <!--
 
-TODO(adamjcook): add summary of element and element options/attributes here
+graph-paper provides a customizable user interface element for generating engineering graph paper.
 
-Options:
-
-TODO(adamjcook): Paper color (paper-color): (hex color code, i.e. #fff) #fff*
-TODO(adamjcook): PPI (pixels per inch)???
-TODO(adamjcook): Stroke color (stroke-color): (hex color code, i.e. #e1e1e1) #e1e1e1*
-TODO(adamjcook): Major line spacing in X (major-line-x-spacing): 0*
-TODO(adamjcook): Major line spacing in Y (major-line-y-spacing): 0*
-TODO(adamjcook): Enable scalar zoom multipler???
-TODO(adamjcook): Enable snap points??? On click handler to find the nearest grid intersection and output it through graph-paper element API
+| Name           | Type    | Default    | Description                                                                                                                                                      |
+| -------------- | ------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| units          | String  | 'inch'     | Available options are 'inch' and 'mm'. These are the measurement units used when computing paper size.                                                           |
+| paperSize      | String  | 'letter'   | Available options are 'letter', 'legal', 'tabloid' when the 'units' attribute is 'inch'. Available options are 'a4' and 'a3' when the 'units' attribute is 'mm'. |
+| layout         | String  | 'portrait' | Available options are 'portrait' and 'landscape'. This sets the orientation of the paper on the screen.                                                          |
+| gridSpacing    | double  | 0.1250     | Controls the spacing between two consecutive vertical and horizontal grid lines. A grid spacing value of '1' equals '96' pixels.                                 |
+| gridMargin     | double  | 0.1875     | Controls the margin around the grid area. A margin value of '1' equals '96' pixels.                                                                              |
+| loggingEnabled | boolean | false      | Activates logging to the console of various internal library events.                                                                                             |
 
 @group Graph Paper Elements
 @element graph-paper
-@homepage adamjcook.github.io/graph-paper
+@homepage github.com/adamjcook/graph-paper
 -->
 
 <link rel="import" href="../../../../packages/polymer/polymer.html">
@@ -28,12 +27,9 @@ TODO(adamjcook): Enable snap points??? On click handler to find the nearest grid
                                                 paperSize
                                                 layout
                                                 gridSpacing
-                                                gridMargin
-                                                strokeWidth">
+                                                gridMargin">
   <template>
     <link rel="stylesheet" href="graph_paper.css">
-    <!-- TODO(adamjcook): on #paper, width and margin-top are adjusted when 'margin' attribute is adjusted -->
-    <!-- TODO(adamjcook): on #paper, border (thickness and color) is adjusted when 'stroke-color' and 'stroke-width' attribute are adjusted -->
     <div id="paper">
       <div id="paper-content">
         <content></content>

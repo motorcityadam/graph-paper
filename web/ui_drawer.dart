@@ -1,6 +1,6 @@
 // Copyright (c) 2014 Adam Joseph Cook. All rights reserved.
-// This code may only be used under The MIT License found at http://adamjcook.github.io/graph-paper/LICENSE
-// The complete set of contributors may be found at http://adamjcook.github.io/graph-paper/CONTRIBUTORS
+// This code may only be used under The MIT License found at https://github.com/adamjcook/graph-paper/blob/master/LICENSE
+// The complete set of contributors may be found at https://github.com/adamjcook/graph-paper/blob/master/CONTRIBUTORS
 
 library ui_drawer;
 
@@ -9,9 +9,7 @@ import 'dart:html';
 
 import 'package:polymer/polymer.dart';
 
-/**
- * TODO(adamjcook): add comments for this element
- */
+
 @CustomTag('ui-drawer')
 class UiDrawer extends PolymerElement {
   @observable ObservableMap drawerState = toObservable({
@@ -23,7 +21,7 @@ class UiDrawer extends PolymerElement {
   @published String layout;
   @published double gridSpacing;
   @published double gridMargin;
-  @published String strokeWidth;
+//  @published String strokeWidth;
 //  @published bool snapToGrid;
 
   UiDrawer.created() : super.created() {}
