@@ -15,12 +15,6 @@ main(args) {
 }
 
 const String _POLYMER_HTML_FORWARD = '''
-<!--
-Copyright (c) 2014 Adam Joseph Cook. All rights reserved.
-This code may only be used under The MIT License found at https://github.com/adamjcook/graph-paper/blob/master/LICENSE
-The complete set of contributors may be found at https://github.com/adamjcook/graph-paper/blob/master/CONTRIBUTORS
--->
-
 <!-- Dart note: load polymer for Dart and JS from the same place -->
 <link rel="import" href="../../../../packages/polymer/polymer.html">
 ${generator.EMPTY_SCRIPT_WORKAROUND_ISSUE_11}

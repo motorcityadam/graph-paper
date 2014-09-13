@@ -1,7 +1,3 @@
-// Copyright (c) 2014 Adam Joseph Cook. All rights reserved.
-// This code may only be used under The MIT License found at https://github.com/adamjcook/graph-paper/blob/master/LICENSE
-// The complete set of contributors may be found at https://github.com/adamjcook/graph-paper/blob/master/CONTRIBUTORS
-
 library bootstrap;
 
 import 'package:core_elements/core_icon_button.dart';
