@@ -15,6 +15,7 @@ class ExampleApp extends PolymerElement {
   @observable int majorGridIncrement;
   @observable String minorGridColor;
   @observable String majorGridColor;
+  @observable String paperColor;
 //  @observable bool snapToGrid;
 
   ExampleApp.created() : super.created() {}

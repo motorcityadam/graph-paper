@@ -52,6 +52,12 @@ import 'package:polymer/polymer.dart';
  *    designation that is valid in CSS (for example, `red`, `#990000`, 
  *    `rgb(255,0,0)`, `rgba(255,0,0,0.2)`, `hsl(120,100%,50%)`...etc.).
  *    Note that CMYK color functions are not supported in any current browser.
+ * 
+ *  paperColor [String] By default, the paper color is `white`. Controls the 
+ *    color of the paper. This attribute can be any color or color
+ *    designation that is valid in CSS (for example, `red`, `#990000`, 
+ *    `rgb(255,0,0)`, `rgba(255,0,0,0.2)`, `hsl(120,100%,50%)`...etc.).
+ *    Note that CMYK color functions are not supported in any current browser.
  */
 @CustomTag('graph-paper')
 class GraphPaper extends PolymerElement {
@@ -63,6 +69,7 @@ class GraphPaper extends PolymerElement {
   @published int majorGridIncrement = 0;
   @published String minorGridColor = 'gray';
   @published String majorGridColor = 'gray';
+  @published String paperColor = 'white';
   // TODO(adamjcook): Implement this.
   // @published bool snapToGrid = false;
   
@@ -105,6 +112,10 @@ class GraphPaper extends PolymerElement {
     changePaperSize();
     changeGridMargin();
     changeGridSpacing();
+    changeMajorGridIncrement();
+    changeMinorGridColor();
+    changeMajorGridColor();
+    changePaperColor();
   }
 
   void _initLogging() {
@@ -255,6 +266,10 @@ class GraphPaper extends PolymerElement {
     changeMajorGridColor();
   }
 
+  void paperColorChanged(String oldValue, String newValue) {
+    changePaperColor();
+  }
+
 // TODO(adamjcook): Implement this.
 //  void snapToGridChanged(String oldValue, String newValue) {
 //
@@ -354,4 +369,9 @@ class GraphPaper extends PolymerElement {
     _logger.info('major grid color changed to $majorGridColor');
   }
 
+  void changePaperColor() {
+    _paper.style.background = paperColor;
+
+    _logger.info('paper color changed to $paperColor');
+  }
 }
