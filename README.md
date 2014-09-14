@@ -17,6 +17,8 @@ graph-paper provides a customizable user interface element for generating engine
  * **gridSpacing** [double] Default is 12. Units are in pixels. Controls the spacing between two consecutive vertical and horizontal grid lines.
  * **gridMargin** [double] Default is 18. Units are in pixels. Controls the margin around the grid area.
  * **majorGridIncrement** [int] By default, a major grid is not drawn. If this attribute is not set, no major grid will be drawn. Controls the number of grid squares that should be skipped (in the vertical and horizontal directions) before a major grid line is drawn. The origin starts in the upper, left-hand corner of the grid. Major grid lines are represented, by default, by a thicker line than their minor grid counterparts.
+ * **minorGridColor** [String] By default, the minor grid is `gray`. Controls the color of the minor grid lines. This attribute can be any color or color designation that is valid in CSS (for example, `red`, `#990000`, `rgb(255,0,0)`, `rgba(255,0,0,0.2)`, `hsl(120,100%,50%)`...etc.). Note that CMYK color functions are not supported in any current browser.
+ * **majorGridColor** [String] By default, the major grid is `gray`. Controls the color of the major grid lines. This attribute can be any color or color designation that is valid in CSS (for example, `red`, `#990000`, `rgb(255,0,0)`, `rgba(255,0,0,0.2)`, `hsl(120,100%,50%)`...etc.). Note that CMYK color functions are not supported in any current browser.
    
 ## Status
 

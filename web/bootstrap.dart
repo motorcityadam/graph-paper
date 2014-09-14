@@ -4,6 +4,7 @@ import 'package:core_elements/core_icon_button.dart';
 import 'package:core_elements/core_toolbar.dart';
 import 'package:polymer/polymer.dart';
 import 'package:paper_elements/paper_checkbox.dart';
+import 'package:paper_elements/paper_input.dart';
 import 'package:paper_elements/paper_radio_group.dart';
 import 'package:paper_elements/paper_shadow.dart';
 import 'package:paper_elements/paper_slider.dart';
@@ -24,6 +25,7 @@ void registerElementsWithPolymer() {
   upgradeCoreIconButton();
   upgradeCoreToolbar();
   upgradePaperCheckbox();
+  upgradePaperInput();
   upgradePaperRadioGroup();
   upgradePaperShadow();
   upgradePaperSlider();

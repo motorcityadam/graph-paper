@@ -10,7 +10,9 @@
                                                 layout
                                                 gridSpacing
                                                 gridMargin
-                                                majorGridIncrement">
+                                                majorGridIncrement
+                                                minorGridColor
+                                                majorGridColor">
   <template>
     <link rel="stylesheet" href="example_app.css">
 
@@ -18,10 +20,12 @@
     <div id="frameContainer">
       <graph-paper loggingEnabled="true"
                     paperSize="{{ paperSize }}"
-                   layout="{{ layout }}"
-                   gridSpacing="{{ gridSpacing }}"
-                   gridMargin="{{ gridMargin }}"
-                   majorGridIncrement="{{ majorGridIncrement }}"></graph-paper>
+                    layout="{{ layout }}"
+                    gridSpacing="{{ gridSpacing }}"
+                    gridMargin="{{ gridMargin }}"
+                    majorGridIncrement="{{ majorGridIncrement }}"
+                    minorGridColor="{{ minorGridColor }}"
+                    majorGridColor="{{ majorGridColor }}"></graph-paper>
       <!-- OPTIONAL: Add some visual depth to the graph paper with paper-shadow -->
       <!-- <paper-shadow z="1"></paper-shadow> --> 
     </div>
@@ -32,7 +36,9 @@
                layout="{{ layout }}"
                gridSpacing="{{ gridSpacing }}"
                gridMargin="{{ gridMargin }}"
-               majorGridIncrement="{{ majorGridIncrement }}"></ui-drawer>
+               majorGridIncrement="{{ majorGridIncrement }}"
+               minorGridColor="{{ minorGridColor }}"
+               majorGridColor="{{ majorGridColor }}"></ui-drawer>
     <!-- ===================== UI DRAWER/CONTROLS ===================== -->
 
   </template>

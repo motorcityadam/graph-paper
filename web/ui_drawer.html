@@ -3,6 +3,7 @@
 <link rel="import" href="packages/core_elements/core_icon_button.html">
 <link rel="import" href="packages/core_elements/core_toolbar.html">
 <link rel="import" href="packages/paper_elements/paper_checkbox.html">
+<link rel="import" href="packages/paper_elements/paper_input.html">
 <link rel="import" href="packages/paper_elements/paper_radio_group.html">
 <link rel="import" href="packages/paper_elements/paper_slider.html">
 
@@ -10,7 +11,9 @@
                                               layout
                                               gridSpacing
                                               gridMargin
-                                              majorGridIncrement">
+                                              majorGridIncrement
+                                              minorGridColor
+                                              majorGridColor">
   <template>
     <link rel="stylesheet" href="ui_drawer.css">
     <div id="uiControls" class="{{ {collapsed: drawerState['collapsed']} }}">
@@ -54,8 +57,19 @@
             </div>
             <div center layout>
               <div class="uiControlLabel">Major Grid Increment</div>
-              <paper-slider value="{{ majorGridIncrement }}" max="100" step="1" editable snaps></paper-slider>
+              <paper-slider value="{{ majorGridIncrement }}" max="50" step="1" editable snaps></paper-slider>
             </div>
+          </section>
+              <div center layout>
+                <div class="uiControlLabel">Minor Grid Color</div>
+                <paper-input label="gray" value="{{ minorGridColor }}"></paper-input>
+            </div>
+              <div center layout>
+                <div class="uiControlLabel">Major Grid Color</div>
+                <paper-input label="gray" value="{{ majorGridColor }}"></paper-input>
+            </div>
+          <section>
+
           </section>
           <!--<section style="width: 120px;">-->
             <!--<div center horizontal layout>-->

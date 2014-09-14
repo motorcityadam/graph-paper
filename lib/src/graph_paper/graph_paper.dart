@@ -40,6 +40,18 @@ import 'package:polymer/polymer.dart';
  *    directions) before a major grid line is drawn. The origin starts in the 
  *    upper, left-hand corner of the grid. Major grid lines are represented, by 
  *    default, by a thicker line than their minor grid counterparts.
+ * 
+ *  minorGridColor [String] By default, the minor grid is `gray`. Controls the 
+ *    color of the minor grid lines. This attribute can be any color or color
+ *    designation that is valid in CSS (for example, `red`, `#990000`, 
+ *    `rgb(255,0,0)`, `rgba(255,0,0,0.2)`, `hsl(120,100%,50%)`...etc.).
+ *    Note that CMYK color functions are not supported in any current browser.
+ * 
+ *  majorGridColor [String] By default, the major grid is `gray`. Controls the 
+ *    color of the major grid lines. This attribute can be any color or color
+ *    designation that is valid in CSS (for example, `red`, `#990000`, 
+ *    `rgb(255,0,0)`, `rgba(255,0,0,0.2)`, `hsl(120,100%,50%)`...etc.).
+ *    Note that CMYK color functions are not supported in any current browser.
  */
 @CustomTag('graph-paper')
 class GraphPaper extends PolymerElement {
@@ -49,6 +61,8 @@ class GraphPaper extends PolymerElement {
   @published double gridSpacing = 12;
   @published double gridMargin = 18;
   @published int majorGridIncrement = 0;
+  @published String minorGridColor = 'gray';
+  @published String majorGridColor = 'gray';
   // TODO(adamjcook): Implement this.
   // @published bool snapToGrid = false;
   
@@ -139,7 +153,7 @@ class GraphPaper extends PolymerElement {
     // top and left-hand side of the pattern unit. The length and height of
     // these paths will be set in the changeGridSpacing() function below.
     _minorGridPath.setAttribute('fill', 'none');
-    _minorGridPath.setAttribute('stroke', 'gray');
+    _minorGridPath.setAttribute('stroke', minorGridColor);
     _minorGridPath.setAttribute('stroke-width', '1.0');
     _minorGridPattern.append(_minorGridPath);
 
@@ -166,7 +180,7 @@ class GraphPaper extends PolymerElement {
     _majorGridPattern.id = 'major-grid';
 
     _majorGridPath.setAttribute('fill', 'none');
-    _majorGridPath.setAttribute('stroke', 'gray');
+    _majorGridPath.setAttribute('stroke', majorGridColor);
     _majorGridPath.setAttribute('stroke-width', '2.0');
     _majorGridPattern.append(_majorGridPath);
 
@@ -184,11 +198,11 @@ class GraphPaper extends PolymerElement {
     // the `rect` element will have no grid lines. Border lines on the right
     // and the bottom of the grid pattern are added here.
     _rightBorderGridPath.setAttribute('fill', 'none');
-    _rightBorderGridPath.setAttribute('stroke', 'gray');
+    _rightBorderGridPath.setAttribute('stroke', minorGridColor);
     _rightBorderGridPath.setAttribute('stroke-width', '1.0');
     _svgElement.append(_rightBorderGridPath);
     _bottomBorderGridPath.setAttribute('fill', 'none');
-    _bottomBorderGridPath.setAttribute('stroke', 'gray');
+    _bottomBorderGridPath.setAttribute('stroke', minorGridColor);
     _bottomBorderGridPath.setAttribute('stroke-width', '1.0');
     _svgElement.append(_bottomBorderGridPath);
 
@@ -229,8 +243,16 @@ class GraphPaper extends PolymerElement {
     changeGridSpacing();
   }
 
-  void majorGridIncrementChanged(double oldValue, double newValue) {
+  void majorGridIncrementChanged(int oldValue, int newValue) {
     changeMajorGridIncrement();
+  }
+
+  void minorGridColorChanged(String oldValue, String newValue) {
+    changeMinorGridColor();
+  }
+
+  void majorGridColorChanged(String oldValue, String newValue) {
+    changeMajorGridColor();
   }
 
 // TODO(adamjcook): Implement this.
@@ -302,7 +324,7 @@ class GraphPaper extends PolymerElement {
     _logger.info('minor grid spacing changed to $gridSpacing');
   }
 
-  changeMajorGridIncrement() {
+  void changeMajorGridIncrement() {
     if (majorGridIncrement == 0) {
       return;
     }
@@ -316,6 +338,20 @@ class GraphPaper extends PolymerElement {
     _majorGridPathSegments.appendItem(_majorGridPath.createSvgPathSegLinetoAbs(0, (gridSpacing*majorGridIncrement)));
 
     _logger.info('major grid incremenet changed to $majorGridIncrement');
+  }
+
+  void changeMinorGridColor() {
+    _minorGridPath.setAttribute('stroke', minorGridColor);
+    _rightBorderGridPath.setAttribute('stroke', minorGridColor);
+    _bottomBorderGridPath.setAttribute('stroke', minorGridColor);
+
+    _logger.info('minor grid color changed to $minorGridColor');
+  }
+
+  void changeMajorGridColor() {
+    _majorGridPath.setAttribute('stroke', majorGridColor);
+
+    _logger.info('major grid color changed to $majorGridColor');
   }
 
 }
