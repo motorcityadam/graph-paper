@@ -12,7 +12,7 @@ graph-paper provides a customizable user interface element for generating engine
 ## Attributes
 
  * **loggingEnabled** [boolean] Default is false. Activates logging to the console of various internal library events.
- * **paperSize** [String] Default is 'letter'. Available options are 'letter', 'legal', 'tabloid', 'a4' and 'a3'.
+ * **paperSize** [String] Default is 'letter'. Available options are 'letter', 'legal', 'tabloid', 'a5', a4' and 'a3'.
  * **layout** [String] Default is 'portrait'. Available options are 'portrait' and 'landscape'. This sets the orientation of the paper on the screen.
  * **gridSpacing** [double] Default is 12. Units are in pixels. Controls the spacing between two consecutive vertical and horizontal grid lines.
  * **gridMargin** [double] Default is 18. Units are in pixels. Controls the margin around the grid area.

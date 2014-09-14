@@ -16,7 +16,7 @@ import 'package:polymer/polymer.dart';
  *
  * Attributes:
  *  loggingEnabled [boolean] Default is false. Activates logging to the console of various internal library events.
- *  paperSize [String] Default is 'letter'. Available options are 'letter', 'legal', 'tabloid', 'a4' and 'a3'.
+ *  paperSize [String] Default is 'letter'. Available options are 'letter', 'legal', 'tabloid', 'a5', a4' and 'a3'.
  *  layout [String] Default is 'portrait'. Available options are 'portrait' and 'landscape'. This sets the orientation of the paper on the screen.
  *  gridSpacing [double] Default is 12. Units are in pixels. Controls the spacing between two consecutive vertical and horizontal grid lines.
  *  gridMargin [double] Default is 18. Units are in pixels. Controls the margin around the grid area.
@@ -53,6 +53,9 @@ class GraphPaper extends PolymerElement {
   @override
   void attached() {
     super.attached();
+
+    assert(['letter', 'legal', 'tabloid', 'a5', 'a4', 'a3'].contains(paperSize));
+    assert(['portrait', 'landscape'].contains(layout));
 
     _paper = $['paper'];
     _paperContent = $['paper-content'];
@@ -166,6 +169,9 @@ class GraphPaper extends PolymerElement {
     } else if (paperSize == 'tabloid') {
       _paper.style.width = _pixelsToString((11.0 * _ppi));
       _paper.style.height = _pixelsToString((17.0 * _ppi));
+    } else if (paperSize == 'a5') {
+      _paper.style.width = _pixelsToString(((148/25.4) * _ppi));
+      _paper.style.height = _pixelsToString(((210/25.4) * _ppi));
     } else if (paperSize == 'a4') {
       _paper.style.width = _pixelsToString(((210/25.4) * _ppi));
       _paper.style.height = _pixelsToString(((297/25.4) * _ppi));
