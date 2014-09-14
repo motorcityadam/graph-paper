@@ -4,6 +4,7 @@ author: Adam J. Cook <adam.joseph.cook@gmail.com>
 description: Web component for generating various types of engineering graph paper using SVG, written in Dart and Polymer.
 homepage: https://github.com/adamjcook/graph-paper
 dependencies:
+  logging: '>=0.9.2 <0.10.0'
   polymer: '>=0.14.0+1 <0.15.0'
   quiver: '>=0.18.2 <0.19.0'
   web_components: '>=0.7.0 <0.8.0'

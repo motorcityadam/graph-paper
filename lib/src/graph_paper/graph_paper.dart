@@ -21,7 +21,6 @@ import 'package:polymer/polymer.dart';
  *  gridSpacing [double] Default is 0.1250. Controls the spacing between two consecutive vertical and horizontal grid lines. A grid spacing value of '1' equals '96' pixels.
  *  gridMargin [double] Default is 0.1875. Controls the margin around the grid area. A margin value of '1' equals '96' pixels.
  *  loggingEnabled [boolean] Default is false. Activates logging to the console of various internal library events.
- *
  */
 @CustomTag('graph-paper')
 class GraphPaper extends PolymerElement {
