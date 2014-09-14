@@ -7,6 +7,6 @@
     margin-bottom: 50px;
 }
 
-:host graph-paper {
-    outline: 0;
+:host graph-paper /deep/ #paper {
+	border: 1px solid #8c8c8c;
 }

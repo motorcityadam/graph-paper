@@ -16,6 +16,7 @@ graph-paper provides a customizable user interface element for generating engine
  * **layout** [String] Default is 'portrait'. Available options are 'portrait' and 'landscape'. This sets the orientation of the paper on the screen.
  * **gridSpacing** [double] Default is 12. Units are in pixels. Controls the spacing between two consecutive vertical and horizontal grid lines.
  * **gridMargin** [double] Default is 18. Units are in pixels. Controls the margin around the grid area.
+ * **majorGridIncrement** [int] By default, a major grid is not drawn. If this attribute is not set, no major grid will be drawn. Controls the number of grid squares that should be skipped (in the vertical and horizontal directions) before a major grid line is drawn. The origin starts in the upper, left-hand corner of the grid. Major grid lines are represented, by default, by a thicker line than their minor grid counterparts.
    
 ## Status
 

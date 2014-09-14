@@ -1,17 +1,11 @@
-:host :hover {
-    cursor: crosshair;
-}
-
 :host #paper {
     background: #fff;
     float: left;
+    box-sizing: border-box;
 }
 
 :host #paper-content {
     /* spec => width: 816px, height: 1056px - letter size, portrait at 100% zoom */
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     position: absolute;
     height: auto;
     top: 0;
@@ -19,4 +13,8 @@
     left: 0;
     right: 0;
     overflow: hidden;
+}
+
+:host #paper-content:hover {
+    cursor: crosshair;
 }

@@ -12,7 +12,7 @@ class ExampleApp extends PolymerElement {
   @observable String layout;
   @observable double gridSpacing;
   @observable double gridMargin;
-//  @observable String strokeWidth;
+  @observable int majorGridIncrement;
 //  @observable bool snapToGrid;
 
   ExampleApp.created() : super.created() {}

@@ -16,7 +16,7 @@ class UiDrawer extends PolymerElement {
   @published String layout;
   @published double gridSpacing;
   @published double gridMargin;
-//  @published String strokeWidth;
+  @published int majorGridIncrement;
 //  @published bool snapToGrid;
 
   UiDrawer.created() : super.created() {}

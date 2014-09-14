@@ -12,14 +12,34 @@ import 'package:polymer/polymer.dart';
  * graph-paper
  *
  * Summary:
- *   graph-paper provides a customizable user interface element for generating engineering graph paper.
+ * 
+ *  graph-paper provides a customizable user interface element for generating 
+ *  engineering graph paper.
  *
+ * 
  * Attributes:
- *  loggingEnabled [boolean] Default is false. Activates logging to the console of various internal library events.
- *  paperSize [String] Default is 'letter'. Available options are 'letter', 'legal', 'tabloid', 'a5', a4' and 'a3'.
- *  layout [String] Default is 'portrait'. Available options are 'portrait' and 'landscape'. This sets the orientation of the paper on the screen.
- *  gridSpacing [double] Default is 12. Units are in pixels. Controls the spacing between two consecutive vertical and horizontal grid lines.
- *  gridMargin [double] Default is 18. Units are in pixels. Controls the margin around the grid area.
+ * 
+ *  loggingEnabled [boolean] Default is false. Activates logging to the console 
+ *    of various internal library events.
+ * 
+ *  paperSize [String] Default is 'letter'. Available options are 'letter', 
+ *    'legal', 'tabloid', 'a5', a4' and 'a3'.
+ * 
+ *  layout [String] Default is 'portrait'. Available options are 'portrait' and 
+ *    'landscape'. This sets the orientation of the paper on the screen.
+ * 
+ *  gridSpacing [double] Default is 12. Units are in pixels. Controls the 
+ *    spacing between two consecutive vertical and horizontal grid lines.
+ * 
+ *  gridMargin [double] Default is 18. Units are in pixels. Controls the margin 
+ *    around the grid area.
+ * 
+ *  majorGridIncrement [int] By default, a major grid is not drawn. If this 
+ *    attribute is not set, no major grid will be drawn. Controls the number of 
+ *    grid squares that should be skipped (in the vertical and horizontal 
+ *    directions) before a major grid line is drawn. The origin starts in the 
+ *    upper, left-hand corner of the grid. Major grid lines are represented, by 
+ *    default, by a thicker line than their minor grid counterparts.
  */
 @CustomTag('graph-paper')
 class GraphPaper extends PolymerElement {
@@ -28,6 +48,7 @@ class GraphPaper extends PolymerElement {
   @published String layout = 'portrait';
   @published double gridSpacing = 12;
   @published double gridMargin = 18;
+  @published int majorGridIncrement = 0;
   // TODO(adamjcook): Implement this.
   // @published bool snapToGrid = false;
   
@@ -38,10 +59,13 @@ class GraphPaper extends PolymerElement {
   DivElement _gridContainer; // div tag with id #grid-container inside element template (wraps the actual SVG grid)
   SvgSvgElement _svgElement = new SvgSvgElement();
   PatternElement _minorGridPattern = new PatternElement();
+  PatternElement _majorGridPattern = new PatternElement();
   PathElement _minorGridPath = new PathElement();
+  PathElement _majorGridPath = new PathElement();
   PathElement _rightBorderGridPath = new PathElement();
   PathElement _bottomBorderGridPath = new PathElement();
   PathSegList _minorGridPathSegments;
+  PathSegList _majorGridPathSegments;
   PathSegList _rightBorderPathSegments;
   PathSegList _bottomBorderPathSegments;
   double _ppi = 96.0;        // Pixels per inch at 100% zoom.
@@ -80,41 +104,92 @@ class GraphPaper extends PolymerElement {
 
   void _initSvgGrid() {
     var defsElement = new DefsElement();
-    var rectElement = new RectElement();
+    var minorGridRectElement = new RectElement();
+    var majorGridRectElement = new RectElement();
 
+    // Set attributes on `svg` element.
     _svgElement.setAttribute('width', '100%');
     _svgElement.setAttribute('height', '100%');
     _svgElement.setAttribute('zoomAndPan', 'disabled');
-    _svgElement.setAttribute('currentscale', '2');
+    _svgElement.setAttribute('currentscale', '1');
     _gridContainer.append(_svgElement);
     _svgElement.id = 'svg-grid';
 
+    // Add `defs` element as child of the `svg` element.
     _svgElement.append(defsElement);
 
+    // ===================== BEGIN MINOR GRID =====================
+    // This is for the minor grid.
+    // Set `patternUnits` attribute on the `pattern` element, add it as a
+    // child of the `defs` element. The height and width (in pixels) of each 
+    // discrete pattern unit will be set in the changeGridSpacing() function
+    // below when the `gridSpacing` attribute is set or changed on the
+    // `graph-paper` element.
     _minorGridPattern.setAttribute('patternUnits', 'userSpaceOnUse');
     defsElement.append(_minorGridPattern);
     _minorGridPattern.id = 'minor-grid';
 
+    // This is for the minor grid.
+    // Set attributes on the `path` element that is a child of the `pattern`
+    // element. The `path` element describes the line segmenets that will be
+    // drawn within each discrete pattern unit. For grid lines, the lines need
+    // to be drawn around the outer borders of the discrete pattern unit.
+    // Therefore, the line segments (paths) will be drawn as the same pixel
+    // length and height of the pattern unit. The paths will be drawn at the
+    // top and left-hand side of the pattern unit. The length and height of
+    // these paths will be set in the changeGridSpacing() function below.
     _minorGridPath.setAttribute('fill', 'none');
     _minorGridPath.setAttribute('stroke', 'gray');
-    _minorGridPath.setAttribute('stroke-width', '0.5');
+    _minorGridPath.setAttribute('stroke-width', '1.0');
     _minorGridPattern.append(_minorGridPath);
 
+    // This is for the minor grid.
+    // A path consists of segments, this is added to the `d` attribute of the
+    // `path` element here. The exact nature of these path segments will be set 
+    // in the changeGridSpacing() function below.
     _minorGridPathSegments = _minorGridPath.pathSegList;
 
-    rectElement.setAttribute('width', '3000');
-    rectElement.setAttribute('height', '3000');
-    rectElement.setAttribute('fill', 'url(#minor-grid)');
-    _svgElement.append(rectElement);
-    rectElement.id = 'grid';
+    // This is for the minor grid.
+    // Set attributes on `rect` element. The `rect` element is set to a size
+    // of 3000 pixels by 3000 pixels and this element is filled by the grid
+    // pattern represented by the #minor-grid id element (`pattern` element).
+    minorGridRectElement.setAttribute('width', '3000');
+    minorGridRectElement.setAttribute('height', '3000');
+    minorGridRectElement.setAttribute('fill', 'url(#minor-grid)');
+    _svgElement.append(minorGridRectElement);
+    minorGridRectElement.id = 'minor-grid-rect';
+    // ===================== END MINOR GRID =====================
+    
+    // ===================== BEGIN MAJOR GRID =====================
+    _majorGridPattern.setAttribute('patternUnits', 'userSpaceOnUse');
+    defsElement.append(_majorGridPattern);
+    _majorGridPattern.id = 'major-grid';
 
+    _majorGridPath.setAttribute('fill', 'none');
+    _majorGridPath.setAttribute('stroke', 'gray');
+    _majorGridPath.setAttribute('stroke-width', '2.0');
+    _majorGridPattern.append(_majorGridPath);
+
+    _majorGridPathSegments = _majorGridPath.pathSegList;
+
+    majorGridRectElement.setAttribute('width', '3000');
+    majorGridRectElement.setAttribute('height', '3000');
+    majorGridRectElement.setAttribute('fill', 'url(#major-grid)');
+    _svgElement.append(majorGridRectElement);
+    majorGridRectElement.id = 'major-grid-rect';
+    // ===================== END MAJOR GRID =====================
+
+    // Since the path segments in each pattern unit only draw lines at the top
+    // and left-hand side of each pattern unit, the right and bottom sides of
+    // the `rect` element will have no grid lines. Border lines on the right
+    // and the bottom of the grid pattern are added here.
     _rightBorderGridPath.setAttribute('fill', 'none');
     _rightBorderGridPath.setAttribute('stroke', 'gray');
-    _rightBorderGridPath.setAttribute('stroke-width', '0.5');
+    _rightBorderGridPath.setAttribute('stroke-width', '1.0');
     _svgElement.append(_rightBorderGridPath);
     _bottomBorderGridPath.setAttribute('fill', 'none');
     _bottomBorderGridPath.setAttribute('stroke', 'gray');
-    _bottomBorderGridPath.setAttribute('stroke-width', '0.5');
+    _bottomBorderGridPath.setAttribute('stroke-width', '1.0');
     _svgElement.append(_bottomBorderGridPath);
 
     _rightBorderPathSegments = _rightBorderGridPath.pathSegList;
@@ -152,6 +227,10 @@ class GraphPaper extends PolymerElement {
   void gridMarginChanged(double oldValue, double newValue) {
     changeGridMargin();
     changeGridSpacing();
+  }
+
+  void majorGridIncrementChanged(double oldValue, double newValue) {
+    changeMajorGridIncrement();
   }
 
 // TODO(adamjcook): Implement this.
@@ -218,7 +297,25 @@ class GraphPaper extends PolymerElement {
     _bottomBorderPathSegments.appendItem(_bottomBorderGridPath.createSvgPathSegLinetoAbs(0, _paperContent.offsetHeight));
     _bottomBorderPathSegments.appendItem(_bottomBorderGridPath.createSvgPathSegLinetoAbs(_paperContent.offsetWidth, _paperContent.offsetHeight));
 
-    _logger.info('grid spacing changed to $gridSpacing');
+    changeMajorGridIncrement();
+
+    _logger.info('minor grid spacing changed to $gridSpacing');
+  }
+
+  changeMajorGridIncrement() {
+    if (majorGridIncrement == 0) {
+      return;
+    }
+
+    // Adjust major grid body.
+    _majorGridPattern.setAttribute('width', (gridSpacing*majorGridIncrement).toString());
+    _majorGridPattern.setAttribute('height', (gridSpacing*majorGridIncrement).toString());
+    _majorGridPathSegments.clear();
+    _majorGridPathSegments.appendItem(_majorGridPath.createSvgPathSegMovetoAbs((gridSpacing*majorGridIncrement), 0));
+    _majorGridPathSegments.appendItem(_majorGridPath.createSvgPathSegLinetoAbs(0, 0));
+    _majorGridPathSegments.appendItem(_majorGridPath.createSvgPathSegLinetoAbs(0, (gridSpacing*majorGridIncrement)));
+
+    _logger.info('major grid incremenet changed to $majorGridIncrement');
   }
 
 }

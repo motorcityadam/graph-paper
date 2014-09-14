@@ -9,27 +9,30 @@
 <polymer-element name="example-app" attributes="paperSize
                                                 layout
                                                 gridSpacing
-                                                gridMargin">
+                                                gridMargin
+                                                majorGridIncrement">
   <template>
     <link rel="stylesheet" href="example_app.css">
 
     <!-- ===================== GRAPH-PAPER ===================== -->
     <div id="frameContainer">
       <graph-paper loggingEnabled="true"
-                    paperSize="{{paperSize}}"
-                   layout="{{layout}}"
-                   gridSpacing="{{gridSpacing}}"
-                   gridMargin="{{gridMargin}}"></graph-paper>
+                    paperSize="{{ paperSize }}"
+                   layout="{{ layout }}"
+                   gridSpacing="{{ gridSpacing }}"
+                   gridMargin="{{ gridMargin }}"
+                   majorGridIncrement="{{ majorGridIncrement }}"></graph-paper>
       <!-- OPTIONAL: Add some visual depth to the graph paper with paper-shadow -->
-      <paper-shadow z="1"></paper-shadow> 
+      <!-- <paper-shadow z="1"></paper-shadow> --> 
     </div>
     <!-- ===================== GRAPH-PAPER ===================== -->
 
     <!-- ===================== UI DRAWER/CONTROLS ===================== -->
-    <ui-drawer paperSize="{{paperSize}}"
-               layout="{{layout}}"
-               gridSpacing="{{gridSpacing}}"
-               gridMargin="{{gridMargin}}"></ui-drawer>
+    <ui-drawer paperSize="{{ paperSize }}"
+               layout="{{ layout }}"
+               gridSpacing="{{ gridSpacing }}"
+               gridMargin="{{ gridMargin }}"
+               majorGridIncrement="{{ majorGridIncrement }}"></ui-drawer>
     <!-- ===================== UI DRAWER/CONTROLS ===================== -->
 
   </template>

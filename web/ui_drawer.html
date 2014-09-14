@@ -9,21 +9,22 @@
 <polymer-element name="ui-drawer" attributes="paperSize
                                               layout
                                               gridSpacing
-                                              gridMargin">
+                                              gridMargin
+                                              majorGridIncrement">
   <template>
     <link rel="stylesheet" href="ui_drawer.css">
     <div id="uiControls" class="{{ {collapsed: drawerState['collapsed']} }}">
       <div class="uiControlsContainer" flex vertical layout>
         <core-toolbar class="uiTools narrow">
           <div id="selectedElement" flex>
-            <core-icon-button class="toggleButton" title="Toggle Visibility" icon="drawer" on-tap="{{toggleVisibility}}"></core-icon-button>
+            <core-icon-button class="toggleButton" title="Toggle Visibility" icon="drawer" on-tap="{{ toggleVisibility }}"></core-icon-button>
           </div>
         </core-toolbar>
         <div id="controls" class="{{ {collapsed: drawerState['collapsed']} }}" flex>
           <section>
             <div center layout>
               <div class="uiControlLabel">Paper Size</div>
-              <paper-radio-group selected="{{paperSize}}">
+              <paper-radio-group selected="{{ paperSize }}">
                 <paper-radio-button name="letter" label="Letter (8.5&quot; x 11&quot;)"></paper-radio-button>
                 <paper-radio-button name="legal" label="Legal (8.5&quot; x 14&quot;)"></paper-radio-button>
                 <paper-radio-button name="tabloid" label="Tabloid (11&quot; x 17&quot;)"></paper-radio-button>
@@ -36,7 +37,7 @@
           <section>
             <div center layout>
               <div class="uiControlLabel">Layout</div>
-              <paper-radio-group selected="{{layout}}">
+              <paper-radio-group selected="{{ layout }}">
                 <paper-radio-button name="portrait" label="Portrait"></paper-radio-button>
                 <paper-radio-button name="landscape" label="Landscape"></paper-radio-button>
               </paper-radio-group>
@@ -45,11 +46,15 @@
           <section>
             <div center layout>
               <div class="uiControlLabel">Spacing</div>
-              <paper-slider value="{{gridSpacing}}" max="300" step="6.0" editable snaps></paper-slider>
+              <paper-slider value="{{ gridSpacing }}" max="300" step="6.0" editable snaps></paper-slider>
             </div>
             <div center layout>
               <div class="uiControlLabel">Margin</div>
-              <paper-slider value="{{gridMargin}}" max="300" step="6.0" editable snaps></paper-slider>
+              <paper-slider value="{{ gridMargin }}" max="300" step="6.0" editable snaps></paper-slider>
+            </div>
+            <div center layout>
+              <div class="uiControlLabel">Major Grid Increment</div>
+              <paper-slider value="{{ majorGridIncrement }}" max="100" step="1" editable snaps></paper-slider>
             </div>
           </section>
           <!--<section style="width: 120px;">-->

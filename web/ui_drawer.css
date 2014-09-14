@@ -11,7 +11,7 @@
     bottom: 0;
     right: 0;
     width: 350px;
-    border-left: 1px solid silver;
+    border-left: 1px solid #ababab;
     -webkit-user-select: none;
 }
 
@@ -25,20 +25,41 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: #eee;
+    background: #f3f3f3;
+}
+
+:host .uiControlsContainer core-icon-button {
+    color: #fff;
+    border-radius: 0;
+}
+
+:host .uiControlsContainer core-icon-button:hover:not([disabled]) {
+    box-shadow: none;
+    background: #3e6db5;
+}
+
+:host .uiControlsContainer core-icon-button:active:not([disabled]),
+:host .uiControlsContainer core-icon-button.selected:active:not([disabled]) {
+    box-shadow: none;
+    background: #000;
 }
 
 :host .uiTools {
-    background-color: #5264ae;
+    background-color: #333;
 }
 
 :host #controls {
-    font-size: 14px;
     padding: 16px;
     background-color: #eee;
     opacity: 1;
     -webkit-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
+}
+
+:host #controls paper-radio-button {
+    padding: 6px 12px;
+    float: left;
+    clear: both;
 }
 
 :host #controls.collapsed {
