@@ -9,14 +9,13 @@ Web component for generating various types of engineering graph paper using SVG,
 
 graph-paper provides a customizable user interface element for generating engineering graph paper.
 
-| Name           | Type    | Default    | Description                                                                                                                                                      |
-| -------------- | ------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| units          | String  | 'inch'     | Available options are 'inch' and 'mm'. These are the measurement units used when computing paper size.                                                           |
-| paperSize      | String  | 'letter'   | Available options are 'letter', 'legal', 'tabloid' when the 'units' attribute is 'inch'. Available options are 'a4' and 'a3' when the 'units' attribute is 'mm'. |
-| layout         | String  | 'portrait' | Available options are 'portrait' and 'landscape'. This sets the orientation of the paper on the screen.                                                          |
-| gridSpacing    | double  | 0.1250     | Controls the spacing between two consecutive vertical and horizontal grid lines. A grid spacing value of '1' equals '96' pixels.                                 |
-| gridMargin     | double  | 0.1875     | Controls the margin around the grid area. A margin value of '1' equals '96' pixels.                                                                              |
-| loggingEnabled | boolean | false      | Activates logging to the console of various internal library events.                                                                                             |
+## Attributes
+
+ * **loggingEnabled** [boolean] Default is false. Activates logging to the console of various internal library events.
+ * **paperSize** [String] Default is 'letter'. Available options are 'letter', 'legal', 'tabloid', 'a4' and 'a3'.
+ * **layout** [String] Default is 'portrait'. Available options are 'portrait' and 'landscape'. This sets the orientation of the paper on the screen.
+ * **gridSpacing** [double] Default is 12. Units are in pixels. Controls the spacing between two consecutive vertical and horizontal grid lines.
+ * **gridMargin** [double] Default is 18. Units are in pixels. Controls the margin around the grid area.
    
 ## Status
 

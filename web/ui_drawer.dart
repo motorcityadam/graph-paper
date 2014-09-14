@@ -12,7 +12,6 @@ class UiDrawer extends PolymerElement {
     'collapsed': false
   });
 
-  @published String units;
   @published String paperSize;
   @published String layout;
   @published double gridSpacing;

@@ -1,15 +1,15 @@
 <!--
+The graph-paper element provides a highly customizable user interface element 
+for generating engineering graph paper. This is generally useful for engineering
+and scientific applications where a visual representation of grid paper is 
+necessary for positioning diagrams, tables and computation regions.
 
-graph-paper provides a customizable user interface element for generating engineering graph paper.
+Usage example:
+  TODO(adamjcook): Add a couple example usage scenarios.
 
-| Name           | Type    | Default    | Description                                                                                                                                                      |
-| -------------- | ------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| units          | String  | 'inch'     | Available options are 'inch' and 'mm'. These are the measurement units used when computing paper size.                                                           |
-| paperSize      | String  | 'letter'   | Available options are 'letter', 'legal', 'tabloid' when the 'units' attribute is 'inch'. Available options are 'a4' and 'a3' when the 'units' attribute is 'mm'. |
-| layout         | String  | 'portrait' | Available options are 'portrait' and 'landscape'. This sets the orientation of the paper on the screen.                                                          |
-| gridSpacing    | double  | 0.1250     | Controls the spacing between two consecutive vertical and horizontal grid lines. A grid spacing value of '1' equals '96' pixels.                                 |
-| gridMargin     | double  | 0.1875     | Controls the margin around the grid area. A margin value of '1' equals '96' pixels.                                                                              |
-| loggingEnabled | boolean | false      | Activates logging to the console of various internal library events.                                                                                             |
+Styling the element:
+  TODO(adamjcook): Add CSS rules that can style this component externally.
+  TODO(adamjcook): Discuss paper-shadow usage.
 
 @group Graph Paper Elements
 @element graph-paper
@@ -18,7 +18,7 @@ graph-paper provides a customizable user interface element for generating engine
 
 <link rel="import" href="../../../../packages/polymer/polymer.html">
 
-<polymer-element name="graph-paper" attributes="units
+<polymer-element name="graph-paper" attributes="loggingEnabled
                                                 paperSize
                                                 layout
                                                 gridSpacing

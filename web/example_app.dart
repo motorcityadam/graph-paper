@@ -8,7 +8,6 @@ import 'package:polymer/polymer.dart';
 @CustomTag('example-app')
 class ExampleApp extends PolymerElement {
 
-  @observable String units;
   @observable String paperSize;
   @observable String layout;
   @observable double gridSpacing;

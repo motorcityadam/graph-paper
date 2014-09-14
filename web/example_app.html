@@ -6,8 +6,7 @@
 
 <link rel="import" href="ui_drawer.html">
 
-<polymer-element name="example-app" attributes="units
-                                                paperSize
+<polymer-element name="example-app" attributes="paperSize
                                                 layout
                                                 gridSpacing
                                                 gridMargin">
@@ -16,19 +15,18 @@
 
     <!-- ===================== GRAPH-PAPER ===================== -->
     <div id="frameContainer">
-      <graph-paper units="{{units}}"
-                   paperSize="{{paperSize}}"
+      <graph-paper loggingEnabled="true"
+                    paperSize="{{paperSize}}"
                    layout="{{layout}}"
                    gridSpacing="{{gridSpacing}}"
-                   gridMargin="{{gridMargin}}"
-                   loggingEnabled="true"></graph-paper>
-      <paper-shadow z="1"></paper-shadow> <!-- OPTIONAL: Add some depth to the graph paper -->
+                   gridMargin="{{gridMargin}}"></graph-paper>
+      <!-- OPTIONAL: Add some visual depth to the graph paper with paper-shadow -->
+      <paper-shadow z="1"></paper-shadow> 
     </div>
     <!-- ===================== GRAPH-PAPER ===================== -->
 
     <!-- ===================== UI DRAWER/CONTROLS ===================== -->
-    <ui-drawer units="{{units}}"
-               paperSize="{{paperSize}}"
+    <ui-drawer paperSize="{{paperSize}}"
                layout="{{layout}}"
                gridSpacing="{{gridSpacing}}"
                gridMargin="{{gridMargin}}"></ui-drawer>
