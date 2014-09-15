@@ -5,11 +5,33 @@ and scientific applications where a visual representation of grid paper is
 necessary for positioning diagrams, tables and computation regions.
 
 Usage example:
-  TODO(adamjcook): Add a couple example usage scenarios.
 
-Styling the element:
-  TODO(adamjcook): Add CSS rules that can style this component externally - i.e. paper border (graph-paper /deep/ #paper).
-  TODO(adamjcook): Discuss paper-shadow usage.
+  <graph-paper loggingEnabled="false"
+               paperSize="legal"
+               layout="landscape"
+               gridSpacing="12"
+               gridMargin="18"
+               majorGridIncrement="5"
+               minorGridColor="black"
+               majorGridColor="#990000"
+               paperColor="#eee"></graph-paper>
+
+External Styling:
+  To add a custom border around the paper (by default, there is no border):
+
+    graph-paper /deep/ #paper {
+      border: 1px solid #8c8c8c;
+    }
+
+  To add a depth shadow around the paper:
+
+    Add <paper-shadow z="1"></paper-shadow> directly adjacent to the
+    <graph-paper> element. The `paper-shadow` element is from the
+    paper_elements pub package. Increasing the `z` attribute on the 
+    `paper-shadow` element, increases the appearance of depth.
+
+    See the `web/example_app.html` for an example. The `paper-shadow`
+    element is provided as a comment for illustration purposes.
 
 @group Graph Paper Elements
 @element graph-paper
