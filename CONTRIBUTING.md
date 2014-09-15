@@ -53,6 +53,12 @@ If the issue appears to be unique, please provide the following information in t
 * **Related Issues** - Has this issue been reported before? Perhaps the issue was reported earlier and was closed prematurely.
 * **Suggestions** - If you cannot fix the issue yourself, it is helpful if you can provide any suggestions or implementation ideas so that another contributor can provide a fix more easily. Please be specific as possible.
 
+### Installing the Project Git Pre-Commit Hook Script
+
+A project-wide Git pre-commit hook script has been included in this project's source. Before committing any changes, please install the hook script by entering the following command in the root of the project repository:
+
+     ln -s ../../scripts/git/validate-commit-msg.js .git/hooks/commit-msg
+
 ### Submitting a Pull Request
 
 Before you submit your pull request, please consider the following guidelines:
