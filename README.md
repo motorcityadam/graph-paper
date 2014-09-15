@@ -31,11 +31,11 @@ All elements live at the top-level of the `lib/` folder.
 
 Import into HTML:
 
-    <link rel="import" href="packages/graph_paper/graph_paper.html">
+`<link rel="import" href="packages/graph_paper/graph_paper.html">`
 
 Import into Dart:
 
-    import 'package:graph_paper/graph_paper.dart';
+`import 'package:graph_paper/graph_paper.dart';`
     
 ## Build Notes
 
@@ -45,9 +45,21 @@ The `update.dart` tool expects to be run in the repository root.
 To build this project, run the following command from the repository root of the project:
 
     ./tool/update.dart lib/src/graph_paper/graph_paper.html
-    
-## Running Sample Application
 
-To run the sample application, run the following command from the repository root of the project:
+## Running Example Application
+
+To run the example application, run the following command from the repository root of the project:
 
     pub serve
+
+After the command completes, visit the following address in a web browser of choice:
+
+`http://localhost:8080`
+
+Please note that the Dartium web browser that ships with the Dart SDK can run the Dart code natively (as it includes the Dart VM), but that all other browsers must have the Dart code transpiled to JavaScript. When using the `pub serve` command, the Dart2JS compiler included with the Dart SDK performs the transpiling automatically. However, there may be some noticable "lag" in loading the example application while the Dart code is being transformed.
+
+## Contributing
+
+Thank you for your consideration! Please review the [Contributing Guidelines][contributing].
+
+[contributing]: https://github.com/adamjcook/graph-paper/blob/master/CONTRIBUTING.md
