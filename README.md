@@ -20,7 +20,39 @@ graph-paper provides a customizable user interface element for generating engine
  * **minorGridColor** [String] By default, the minor grid is `gray`. Controls the color of the minor grid lines. This attribute can be any color or color designation that is valid in CSS (for example, `red`, `#990000`, `rgb(255,0,0)`, `rgba(255,0,0,0.2)`, `hsl(120,100%,50%)`...etc.). Note that CMYK color functions are not supported in any current browser.
  * **majorGridColor** [String] By default, the major grid is `gray`. Controls the color of the major grid lines. This attribute can be any color or color designation that is valid in CSS (for example, `red`, `#990000`, `rgb(255,0,0)`, `rgba(255,0,0,0.2)`, `hsl(120,100%,50%)`...etc.). Note that CMYK color functions are not supported in any current browser.
  * **paperColor** [String] By default, the paper color is `white`. Controls the color of the paper. This attribute can be any color or color designation that is valid in CSS (for example, `red`, `#990000`, `rgb(255,0,0)`, `rgba(255,0,0,0.2)`, `hsl(120,100%,50%)`...etc.). Note that CMYK color functions are not supported in any current browser.
-   
+
+## Example
+
+    <graph-paper loggingEnabled="false"
+                 paperSize="legal"
+                 layout="landscape"
+                 gridSpacing="12"
+                 gridMargin="18"
+                 majorGridIncrement="5"
+                 minorGridColor="black"
+                 majorGridColor="#990000"
+                 paperColor="#eee"></graph-paper>
+  
+## External Styling
+
+* To add a custom border around the paper (by default, there is no border):
+
+    ```css
+    graph-paper /deep/ #paper {
+      border: 1px solid #8c8c8c;
+    }
+    ```
+
+* To add a depth shadow around the paper:
+
+    Add `<paper-shadow z="1"></paper-shadow>` directly adjacent to the
+    `<graph-paper>` element. The `paper-shadow` element is from the
+    paper_elements pub package. Increasing the `z` attribute on the 
+    `paper-shadow` element, increases the appearance of depth.
+
+    See the `web/example_app.html` for an example. The `paper-shadow`
+    element is provided as a comment for illustration purposes.
+
 ## Status
 
 Please note that this is a beta release of this package and API changes are very probable while this package is in beta.
