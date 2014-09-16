@@ -1,5 +1,5 @@
 name: graph_paper
-version: 0.1.0
+version: 0.2.0
 author: Adam J. Cook <adam.joseph.cook@gmail.com>
 description: Web component for generating various types of engineering graph paper using SVG, written in Dart and Polymer.
 homepage: https://github.com/adamjcook/graph-paper
