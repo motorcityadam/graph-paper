@@ -9,6 +9,10 @@ Web component for generating various types of engineering graph paper using SVG,
 
 graph-paper provides a customizable user interface element for generating engineering graph paper.
 
+## Demonstration Application
+
+Please visit the interactive [demonstration application](http://graph-paper-demo.appspot.com/).
+
 ## Attributes
 
  * **loggingEnabled** [boolean] Default is false. Activates logging to the console of various internal library events.
