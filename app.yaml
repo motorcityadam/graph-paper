@@ -1,0 +1,21 @@
+application: graph-paper-demo
+version: 0-2-0
+runtime: python27
+api_version: 1
+threadsafe: false
+handlers:
+- url: /
+  static_files: build/web/index.html
+  upload: build/web/index.html
+- url: /
+  static_dir: build/web
+skip_files:
+- ^(doc/.*)
+- ^(lib/.*)
+- ^(node_modules/.*)
+- ^(packages/.*)
+- ^(scripts/.*)
+- ^(test/.*)
+- ^(tool/.*)
+- ^(web/.*)
+- ^(.*/)?.*~
