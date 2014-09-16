@@ -1,0 +1,27 @@
+{
+  "name": "graph-paper-dart",
+  "version": "0.0.0",
+  "description": "Web component for generating various types of engineering graph paper using SVG, written in Dart and Polymer.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/adamjcook/graph-paper.git"
+  },
+  "devDependencies": {
+    "karma" : "~0.12.0",
+    "karma-dart" : "~0.2.8",
+    "karma-sauce-launcher": "^0.2.3",
+    "karma-script-launcher": "*",
+    "karma-chrome-launcher": "~0.1.3",
+    "karma-firefox-launcher": "*",
+    "karma-junit-reporter": "~0.2.1",
+    "jasmine-node": "*",
+    "jasmine-reporters": "~0.4.1",
+    "protractor-dart": "0.0.5",
+    "qq": "*"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adamjcook/graph-paper/issues"
+  },
+  "homepage": "https://github.com/adamjcook/graph-paper"
+}

@@ -38,6 +38,21 @@ Documentation is constantly changing as a project progresses, therefore, it is r
 
 Smaller changes, such as those that correct grammer and spelling mistakes, can be implemented without the need for a seperate issue to be filed.
 
+### Changelog Maintenance
+
+The `CHANGELOG.md` file describes the changes since the last release (Git tag) was released. This is essential for end users in that it conveys what new features were added, any previously reported bugs that were fixed and if there any breaking changes that need to be addressed in the current release.
+
+The `CHANGELOG.md` file is divided into discrete sections, each describing a discrete release. The contents of these sections are automatically generated since the last release was created.
+
+To generate the latest change information, run the following command in the root of the repository:
+
+    npm install
+    node ./scripts/changelog/changelog.js <next-git-tag>
+
+The new features, fixes and any breaking changes will be output to the terminal. Copy the output starting with the `<a name="next-git-tag"></a>` element to the **top** of the `CHANGELOG.md` file. The latest release's changes should always be the top of this file.
+
+**Updates to the `CHANGELOG.md` file should only be performed by project owners during a release cycle.**
+
 ## <a name="submissions"></a> Submission Guidelines
 
 ### Submitting an Issue
