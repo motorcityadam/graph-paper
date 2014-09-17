@@ -82,7 +82,7 @@ To build this project, run the following command from the repository root of the
 
     ./tool/update.dart lib/src/graph_paper/graph_paper.html
 
-## Running Example Application
+## Running the Demonstration Application Locally
 
 To run the example application, run the following command from the repository root of the project:
 

@@ -85,6 +85,7 @@ Before you submit your pull request, please consider the following guidelines:
      git checkout -b my-change-branch master
      ```
 
+* If not already present, make sure to add your name and e-mail address to the `CONTRIBUTORS.md` document.
 * Make sure to include all appropriate test cases.
 * Make sure to follow the [Code Style Guidelines](#style).
 * Run the full test suite and ensure that all tests pass. All merges (pull requests) accepted into the 'master' branch are automatically tested with [drone.io][drone.io].
