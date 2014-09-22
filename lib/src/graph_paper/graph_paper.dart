@@ -1,6 +1,5 @@
 library graph_paper;
 
-import 'dart:async';
 import 'dart:html';
 import 'dart:svg';
 
@@ -58,18 +57,22 @@ import 'package:polymer/polymer.dart';
  *    designation that is valid in CSS (for example, `red`, `#990000`, 
  *    `rgb(255,0,0)`, `rgba(255,0,0,0.2)`, `hsl(120,100%,50%)`...etc.).
  *    Note that CMYK color functions are not supported in any current browser.
+ * 
+ *  gridVisible [bool] By default, the grid is visible. Controls the visibility
+ *    of the grid on the paper.
  */
 @CustomTag('graph-paper')
 class GraphPaper extends PolymerElement {
   @published bool loggingEnabled = false;
   @published String paperSize = 'letter';
   @published String layout = 'portrait';
-  @published double gridSpacing = 12;
-  @published double gridMargin = 18;
+  @published double gridSpacing = 12.0;
+  @published double gridMargin = 18.0;
   @published int majorGridIncrement = 0;
   @published String minorGridColor = 'gray';
   @published String majorGridColor = 'gray';
   @published String paperColor = 'white';
+  @published bool gridVisible = true;
   // TODO(adamjcook): Implement this.
   // @published bool snapToGrid = false;
   
@@ -116,6 +119,7 @@ class GraphPaper extends PolymerElement {
     changeMinorGridColor();
     changeMajorGridColor();
     changePaperColor();
+    changeGridVisible();
   }
 
   void _initLogging() {
@@ -270,6 +274,10 @@ class GraphPaper extends PolymerElement {
     changePaperColor();
   }
 
+  void gridVisibleChanged(bool oldValue, bool newValue) {
+    changeGridVisible();
+  } 
+
 // TODO(adamjcook): Implement this.
 //  void snapToGridChanged(String oldValue, String newValue) {
 //
@@ -373,5 +381,15 @@ class GraphPaper extends PolymerElement {
     _paper.style.background = paperColor;
 
     _logger.info('paper color changed to $paperColor');
+  }
+
+  void changeGridVisible() {
+    if (gridVisible == false) {
+      _gridContainer.attributes['invisible'] = '';
+    } else {
+      _gridContainer.attributes.remove('invisible');
+    }
+    
+    _logger.info('grid visibility changed to $gridVisible');
   }
 }
