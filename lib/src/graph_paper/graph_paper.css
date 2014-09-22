@@ -17,3 +17,7 @@
 :host #paper-content:hover {
     cursor: crosshair;
 }
+
+:host #grid-container[invisible] {
+    visibility: hidden;
+}

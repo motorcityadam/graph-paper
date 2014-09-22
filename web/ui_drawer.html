@@ -14,7 +14,8 @@
                                               majorGridIncrement
                                               minorGridColor
                                               majorGridColor
-                                              paperColor">
+                                              paperColor
+                                              gridVisible">
   <template>
     <link rel="stylesheet" href="ui_drawer.css">
     <div id="uiControls" class="{{ {collapsed: drawerState['collapsed']} }}">
@@ -61,6 +62,7 @@
               <paper-slider value="{{ majorGridIncrement }}" max="50" step="1" editable snaps></paper-slider>
             </div>
           </section>
+          <section>
             <div center layout>
               <div class="uiControlLabel">Minor Grid Color</div>
               <paper-input label="gray" value="{{ minorGridColor }}"></paper-input>
@@ -73,8 +75,12 @@
               <div class="uiControlLabel">Paper Color</div>
               <paper-input label="white" value="{{ paperColor }}"></paper-input>
             </div>
+          </section>
           <section>
-
+            <div center layout>
+              <div class="uiControlLabel">Grid Visible</div>
+              <paper-checkbox checked="{{ gridVisible }}"></paper-checkbox>
+            </div>
           </section>
           <!--<section style="width: 120px;">-->
             <!--<div center horizontal layout>-->

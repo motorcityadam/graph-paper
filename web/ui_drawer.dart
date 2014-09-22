@@ -20,6 +20,7 @@ class UiDrawer extends PolymerElement {
   @published String minorGridColor;
   @published String majorGridColor;
   @published String paperColor;
+  @published bool gridVisible;
 //  @published bool snapToGrid;
 
   UiDrawer.created() : super.created() {}
