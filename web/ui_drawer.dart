@@ -1,6 +1,5 @@
 library ui_drawer;
 
-import 'dart:async';
 import 'dart:html';
 
 import 'package:polymer/polymer.dart';
@@ -21,7 +20,7 @@ class UiDrawer extends PolymerElement {
   @published String majorGridColor;
   @published String paperColor;
   @published bool gridVisible;
-//  @published bool snapToGrid;
+  @published bool snapToGrid;
 
   UiDrawer.created() : super.created() {}
 

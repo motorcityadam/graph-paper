@@ -15,7 +15,8 @@
                                               minorGridColor
                                               majorGridColor
                                               paperColor
-                                              gridVisible">
+                                              gridVisible
+                                              snapToGrid">
   <template>
     <link rel="stylesheet" href="ui_drawer.css">
     <div id="uiControls" class="{{ {collapsed: drawerState['collapsed']} }}">
@@ -77,17 +78,17 @@
             </div>
           </section>
           <section>
-            <div center layout>
+            <div center layout class="checkboxContainer">
               <div class="uiControlLabel">Grid Visible</div>
               <paper-checkbox checked="{{ gridVisible }}"></paper-checkbox>
             </div>
           </section>
-          <!--<section style="width: 120px;">-->
-            <!--<div center horizontal layout>-->
-              <!--<div flex>Snap to Grid</div>-->
-              <!--<paper-checkbox checked="{{snapToGrid}}"></paper-checkbox>-->
-            <!--</div>-->
-          <!--</section>-->
+          <section>
+            <div center layout class="checkboxContainer">
+              <div class="uiControlLabel">Snap To Grid</div>
+              <paper-checkbox checked="{{ snapToGrid }}"></paper-checkbox>
+            </div>
+          </section>
         </div>
       </div>
     </div>

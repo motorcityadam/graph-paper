@@ -1,8 +1,5 @@
 library example_app;
 
-import 'dart:async';
-import 'dart:html';
-
 import 'package:polymer/polymer.dart';
 
 @CustomTag('example-app')
@@ -17,7 +14,7 @@ class ExampleApp extends PolymerElement {
   @observable String majorGridColor;
   @observable String paperColor;
   @observable bool gridVisible;
-//  @observable bool snapToGrid;
+  @observable bool snapToGrid;
 
   ExampleApp.created() : super.created() {}
 

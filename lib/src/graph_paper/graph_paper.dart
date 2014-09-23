@@ -6,6 +6,8 @@ import 'dart:svg';
 import 'package:logging/logging.dart';
 import 'package:polymer/polymer.dart';
 
+import './utilities.dart' as utils;
+
 
 /**
  * graph-paper
@@ -60,6 +62,11 @@ import 'package:polymer/polymer.dart';
  * 
  *  gridVisible [bool] By default, the grid is visible. Controls the visibility
  *    of the grid on the paper.
+ * 
+ *  snapToGrid [bool] By default, the selection handle will 'snap' to the
+ *    nearest grid line intersection point. Toggling the value of this attribute
+ *    will not effect the current location of the selection handle; only the
+ *    next selection will be affected. 
  */
 @CustomTag('graph-paper')
 class GraphPaper extends PolymerElement {
@@ -73,14 +80,12 @@ class GraphPaper extends PolymerElement {
   @published String majorGridColor = 'gray';
   @published String paperColor = 'white';
   @published bool gridVisible = true;
-  // TODO(adamjcook): Implement this.
-  // @published bool snapToGrid = false;
-  
-  List clickPoints = toObservable([]);
+  @published bool snapToGrid = true;
 
   DivElement _paper;         // div tag with id #paper inside element template (wraps the entire paper)
   DivElement _paperContent;  // div tag with id #paper-content inside element template (wraps all content on the paper)
   DivElement _gridContainer; // div tag with id #grid-container inside element template (wraps the actual SVG grid)
+  DivElement _handle = new DivElement();
   SvgSvgElement _svgElement = new SvgSvgElement();
   PatternElement _minorGridPattern = new PatternElement();
   PatternElement _majorGridPattern = new PatternElement();
@@ -111,6 +116,7 @@ class GraphPaper extends PolymerElement {
 
     _initLogging();
     _initSvgGrid();
+    _initSelectionSystem();
 
     changePaperSize();
     changeGridMargin();
@@ -120,7 +126,10 @@ class GraphPaper extends PolymerElement {
     changeMajorGridColor();
     changePaperColor();
     changeGridVisible();
+    changeSnapToGrid();
   }
+
+  // ===================== BEGIN INITIALIZATIONS =====================
 
   void _initLogging() {
     if (loggingEnabled == true) {
@@ -129,6 +138,7 @@ class GraphPaper extends PolymerElement {
         print('${rec.level.name}: ${rec.time}: ${rec.message}');
       });
     }
+    _logger.info('Logging system initialized');
   }
 
   void _initSvgGrid() {
@@ -227,13 +237,81 @@ class GraphPaper extends PolymerElement {
     _logger.info('SVG grid created for $gridSpacing spacing');
   }
 
-  String _pixelsToString(double pixels) {
-    return pixels.toString() + 'px';
+  void _initSelectionSystem() {
+    
+
+    // Add handle to default #grid-container at starting location
+    // (upper, left-hand corner).
+    _handle.id = 'handle';
+    _resetHandleLocation();
+    _gridContainer.append(_handle);
+
+    _gridContainer
+      .onClick
+        .listen((e) {
+          title = 'Grid area was clicked at:';
+          var click = {'x': e.offset.x, 'y': e.offset.y};
+          if (snapToGrid == true) {
+            var intersection = _locateNearestGridIntersect(click['x'], click['y']);
+            _handle.style.top = utils.pixelsToString(-3 + intersection['dy']);
+            _handle.style.left = utils.pixelsToString(-3 + intersection['dx']);
+            _logger.info("user selected x: ${ click['x'] } y: ${ click['y'] }");
+            _logger.info("nearest intersection at x: ${ intersection['dx'] } y: ${ intersection['dy'] }");
+          } else {
+            _handle.style.top = utils.pixelsToString(-3 + click['y']);
+            _handle.style.left = utils.pixelsToString(-3 + click['x']);
+            _logger.info("user selected x: ${ click['x'] } y: ${ click['y'] }");
+          }
+        });
+
+    _logger.info('Selection system initialized');
   }
 
-  double _stringToPixels(String pixels_string) {
-    return double.parse(pixels_string.replaceAll('px', ''));
+  void _resetHandleLocation() {
+    _handle.style.top = utils.pixelsToString(-3);
+    _handle.style.left = utils.pixelsToString(-3);
   }
+
+  Map<String, num> _locateNearestGridIntersect( num x, num y ) {
+    var dx;
+    var dy;
+    var modulusX = x % gridSpacing;
+    var modulusY = y % gridSpacing;
+
+    var maxRight = utils.stringToPixels( _paper.style.width ) - ( 2 * gridMargin );
+    var maxBottom = utils.stringToPixels( _paper.style.height ) - ( 2 * gridMargin );
+
+    if ( modulusX == 0 && modulusY == 0 ) {
+      // User clicked on an intersection, no computation necessary.
+      dx = x;
+      dy = y;
+
+    } else {
+      // User clicked outside of an intersection, find the nearest intersection.
+      
+      // Find nearest X intersection point.
+      var leftGap = modulusX;
+      var rightGap = gridSpacing - leftGap;
+
+      if ( leftGap > rightGap ) dx = x + rightGap;
+      if ( leftGap <= rightGap ) dx = x - leftGap;
+
+      // Find nearest Y intersection point.
+      var topGap = modulusY;
+      var bottomGap = gridSpacing - topGap;
+
+      if ( topGap > bottomGap ) dy = y + bottomGap;
+      if ( topGap <= bottomGap ) dy = y - topGap;
+
+      if ( dx > maxRight ) dx = maxRight;
+      if ( dy > maxBottom ) dy = maxBottom;
+
+    }
+
+    return { 'dx': dx, 'dy': dy };
+  }
+
+  // ===================== END INITIALIZATIONS =====================
 
   /**
    * Watcher functions for attribute changes on element.
@@ -242,20 +320,24 @@ class GraphPaper extends PolymerElement {
     changePaperSize();
     changeLayout();
     changeGridSpacing();
+    _resetHandleLocation();
   }
 
   void layoutChanged(String oldValue, String newValue) {
     changeLayout();
     changeGridSpacing();
+    _resetHandleLocation();
   }
 
   void gridSpacingChanged(double oldValue, double newValue) {
     changeGridSpacing();
+    _resetHandleLocation();
   }
 
   void gridMarginChanged(double oldValue, double newValue) {
     changeGridMargin();
     changeGridSpacing();
+    _resetHandleLocation();
   }
 
   void majorGridIncrementChanged(int oldValue, int newValue) {
@@ -278,48 +360,47 @@ class GraphPaper extends PolymerElement {
     changeGridVisible();
   } 
 
-// TODO(adamjcook): Implement this.
-//  void snapToGridChanged(String oldValue, String newValue) {
-//
-//  }
+  void snapToGridChanged(bool oldValue, bool newValue) {
+    changeSnapToGrid();
+  }
 
   void changePaperSize() {
     if (paperSize == 'letter') {
-      _paper.style.width = _pixelsToString((8.5 * _ppi));
-      _paper.style.height = _pixelsToString((11.0 * _ppi));
+      _paper.style.width = utils.pixelsToString((8.5 * _ppi));
+      _paper.style.height = utils.pixelsToString((11.0 * _ppi));
     } else if (paperSize == 'legal') {
-      _paper.style.width = _pixelsToString((8.5 * _ppi));
-      _paper.style.height = _pixelsToString((14.0 * _ppi));
+      _paper.style.width = utils.pixelsToString((8.5 * _ppi));
+      _paper.style.height = utils.pixelsToString((14.0 * _ppi));
     } else if (paperSize == 'tabloid') {
-      _paper.style.width = _pixelsToString((11.0 * _ppi));
-      _paper.style.height = _pixelsToString((17.0 * _ppi));
+      _paper.style.width = utils.pixelsToString((11.0 * _ppi));
+      _paper.style.height = utils.pixelsToString((17.0 * _ppi));
     } else if (paperSize == 'a5') {
-      _paper.style.width = _pixelsToString(((148/25.4) * _ppi));
-      _paper.style.height = _pixelsToString(((210/25.4) * _ppi));
+      _paper.style.width = utils.pixelsToString(((148/25.4) * _ppi));
+      _paper.style.height = utils.pixelsToString(((210/25.4) * _ppi));
     } else if (paperSize == 'a4') {
-      _paper.style.width = _pixelsToString(((210/25.4) * _ppi));
-      _paper.style.height = _pixelsToString(((297/25.4) * _ppi));
+      _paper.style.width = utils.pixelsToString(((210/25.4) * _ppi));
+      _paper.style.height = utils.pixelsToString(((297/25.4) * _ppi));
     } else if (paperSize == 'a3') {
-      _paper.style.width = _pixelsToString(((297/25.4) * _ppi));
-      _paper.style.height = _pixelsToString(((420/25.4) * _ppi));
+      _paper.style.width = utils.pixelsToString(((297/25.4) * _ppi));
+      _paper.style.height = utils.pixelsToString(((420/25.4) * _ppi));
     }
     _logger.info('paper size changed to $paperSize');
   }
 
   void changeLayout() {
-    var oldWidth = _stringToPixels(_paper.style.width);
-    var oldHeight = _stringToPixels(_paper.style.height);
+    var oldWidth = utils.stringToPixels(_paper.style.width);
+    var oldHeight = utils.stringToPixels(_paper.style.height);
 
     if ((layout == 'portrait' && (oldWidth > oldHeight)) ||
         (layout == 'landscape' && (oldWidth < oldHeight))) {
-      _paper.style.width = _pixelsToString(oldHeight);
-      _paper.style.height = _pixelsToString(oldWidth);
+      _paper.style.width = utils.pixelsToString(oldHeight);
+      _paper.style.height = utils.pixelsToString(oldWidth);
     }
     _logger.info('layout changed to $paperSize $layout');
   }
 
   void changeGridMargin() {
-    _paperContent.style.margin = _pixelsToString(gridMargin);
+    _paperContent.style.margin = utils.pixelsToString(gridMargin);
     _logger.info('grid margin changed to $gridMargin');
   }
 
@@ -385,11 +466,15 @@ class GraphPaper extends PolymerElement {
 
   void changeGridVisible() {
     if (gridVisible == false) {
-      _gridContainer.attributes['invisible'] = '';
+      _svgElement.attributes['invisible'] = '';
     } else {
-      _gridContainer.attributes.remove('invisible');
+      _svgElement.attributes.remove('invisible');
     }
     
     _logger.info('grid visibility changed to $gridVisible');
+  }
+
+  void changeSnapToGrid() {
+    _logger.info('snapping to grid changed to $snapToGrid');
   }
 }

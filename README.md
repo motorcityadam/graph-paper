@@ -25,6 +25,7 @@ Please visit the interactive [demonstration application](http://graph-paper-demo
  * **majorGridColor** [String] By default, the major grid is `gray`. Controls the color of the major grid lines. This attribute can be any color or color designation that is valid in CSS (for example, `red`, `#990000`, `rgb(255,0,0)`, `rgba(255,0,0,0.2)`, `hsl(120,100%,50%)`...etc.). Note that CMYK color functions are not supported in any current browser.
  * **paperColor** [String] By default, the paper color is `white`. Controls the color of the paper. This attribute can be any color or color designation that is valid in CSS (for example, `red`, `#990000`, `rgb(255,0,0)`, `rgba(255,0,0,0.2)`, `hsl(120,100%,50%)`...etc.). Note that CMYK color functions are not supported in any current browser.
  * **gridVisible** [bool] By default, the grid is visible. Controls the visibility of the grid on the paper.
+ * **snapToGrid** [bool] By default, the selection handle will 'snap' to the nearest grid line intersection point. Toggling the value of this attribute will not effect the current location of the selection handle; only the next selection will be affected. 
 
 ## Example
 
@@ -37,7 +38,8 @@ Please visit the interactive [demonstration application](http://graph-paper-demo
                  minorGridColor="black"
                  majorGridColor="#990000"
                  paperColor="#eee"
-                 gridVisible="true"></graph-paper>
+                 gridVisible="true"
+                 snapToGrid="true"></graph-paper>
   
 ## External Styling
 
