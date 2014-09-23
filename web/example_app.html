@@ -14,7 +14,8 @@
                                                 minorGridColor
                                                 majorGridColor
                                                 paperColor
-                                                gridVisible">
+                                                gridVisible
+                                                snapToGrid">
   <template>
     <link rel="stylesheet" href="example_app.css">
 
@@ -29,7 +30,8 @@
                     minorGridColor="{{ minorGridColor }}"
                     majorGridColor="{{ majorGridColor }}"
                     paperColor="{{ paperColor }}"
-                    gridVisible="{{ gridVisible }}"></graph-paper>
+                    gridVisible="{{ gridVisible }}"
+                    snapToGrid="{{ snapToGrid }}"></graph-paper>
       <!-- OPTIONAL: Add some visual depth to the graph paper with paper-shadow -->
       <!-- <paper-shadow z="1"></paper-shadow> --> 
     </div>
@@ -44,7 +46,8 @@
                minorGridColor="{{ minorGridColor }}"
                majorGridColor="{{ majorGridColor }}"
                paperColor="{{ paperColor }}"
-               gridVisible="{{ gridVisible }}"></ui-drawer>
+               gridVisible="{{ gridVisible }}"
+               snapToGrid="{{ snapToGrid }}"></ui-drawer>
     <!-- ===================== UI DRAWER/CONTROLS ===================== -->
 
   </template>

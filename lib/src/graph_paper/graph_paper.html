@@ -15,7 +15,8 @@ Usage example:
                minorGridColor="black"
                majorGridColor="#990000"
                paperColor="#eee"
-               gridVisible="true"></graph-paper>
+               gridVisible="true"
+               snapToGrid="true"></graph-paper>
 
 External Styling:
   To add a custom border around the paper (by default, there is no border):
@@ -49,7 +50,9 @@ External Styling:
                                                 majorGridIncrement
                                                 minorGridColor
                                                 majorGridColor
-                                                paperColor">
+                                                paperColor
+                                                gridVisible
+                                                snapToGrid">
   <template>
     <link rel="stylesheet" href="graph_paper.css">
     <div id="paper">

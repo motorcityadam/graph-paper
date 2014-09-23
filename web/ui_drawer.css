@@ -56,6 +56,7 @@
     opacity: 1;
     -webkit-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
+    overflow: auto;
 }
 
 :host #controls paper-radio-button {
@@ -71,6 +72,11 @@
 :host .uiControlLabel {
     white-space: nowrap;
     font-weight: 500;
+}
+
+:host .checkboxContainer {
+    float: left;
+    clear: both;
 }
 
 :host paper-slider {

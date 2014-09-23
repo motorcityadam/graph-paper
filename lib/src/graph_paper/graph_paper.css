@@ -11,13 +11,20 @@
     bottom: 0;
     left: 0;
     right: 0;
-    overflow: hidden;
 }
 
 :host #paper-content:hover {
     cursor: crosshair;
 }
 
-:host #grid-container[invisible] {
+:host #grid-container #handle {
+    position: absolute;
+    border: 1px solid black;
+    width: 5px;
+    height: 5px;
+    background: #2998b0;
+}
+
+:host #svg-grid[invisible] {
     visibility: hidden;
 }
