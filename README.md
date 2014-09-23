@@ -65,6 +65,18 @@ Please visit the interactive [demonstration application](http://graph-paper-demo
 
 Please note that this is a beta release of this package and API changes are very probable while this package is in beta.
 
+## Browser Support
+
+The following browsers have been tested with this package and are currently supported in this release. In general, the most current and prior major release of any given browser is supported by this project.
+
+* Internet Explorer: Support for versions 10 and 11 are planned. However, an issue currently exists with the SVG rendering process. See this [issue](https://github.com/adamjcook/graph-paper/issues/27).
+* Chrome: Tested and supported for versions 37 and 36.
+* Firefox: Tested and supported for versions 32 and 31.
+* Safari: Tested and supported for versions 6.1 and 7.0.
+* Opera: Tested and supported for versions 23 and 24.
+
+All tests were performed using [BrowserStack](http://www.browserstack.com/).
+
 ## Using Elements
 
 All elements live at the top-level of the `lib/` folder.
