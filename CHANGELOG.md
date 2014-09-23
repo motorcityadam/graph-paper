@@ -1,3 +1,19 @@
+<a name="0.3.0"></a>
+# 0.3.0 (2014-09-22)
+
+
+## Features
+
+- **gridVisible:** add ability to hide the grid with an attribute
+  ([38b76a01](https://github.com/adamjcook/graph-paper/commit/38b76a01b93d05fef27cabde7b5e50fde089cb79),
+   [#9](https://github.com/adamjcook/graph-paper/issues/9))
+- **snapToGrid:** implement a selection system that snaps to the grid lines
+  ([1170f33a](https://github.com/adamjcook/graph-paper/commit/1170f33a883718071a9899cea3d9fdf7b29e9bcd),
+   [#8](https://github.com/adamjcook/graph-paper/issues/8))
+
+
+## Breaking Changes
+
 <a name="0.2.0"></a>
 # 0.2.0 (2014-09-15)
 
